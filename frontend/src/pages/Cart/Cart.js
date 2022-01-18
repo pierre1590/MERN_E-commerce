@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect,useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {Link,useParams,useNavigate,useSearchParams} from 'react-router-dom'
 import {Row, 
@@ -13,7 +13,7 @@ import Message from '../../components/Message'
 import {addToCart , removeFromCart,clearCart} from '../../actions/cartActions'
 import {FaTrash} from 'react-icons/fa'
 import './Cart.css'
-
+import {FaHome} from 'react-icons/fa'
 
 const Cart = () => {
     const {id} = useParams() 
@@ -27,6 +27,8 @@ const Cart = () => {
     const cart = useSelector((state) => state.cart)
     const {cartItems} = cart
 
+
+    
     
 
     useEffect(() => {
@@ -41,13 +43,16 @@ const Cart = () => {
     }
 
     const checkoutHandler = () => {
-        navigate('/signin?redirect=shipping')
+        navigate('/login?redirect=shipping')
     }
 
     const clearCartHandler = () => {
         dispatch(clearCart())
     }
 
+    const homeHandler = () => {
+        navigate('/')
+    }
 
     return (
       <Row>
@@ -55,8 +60,14 @@ const Cart = () => {
           <h1>Shopping Cart</h1>
           {cartItems.length === 0 ? (
             <Message variant="info">
-              Your cart is empty
-              <Link to="/"> Go Back</Link>
+              Your cart is empty{" "}
+              <Link to="/">
+                <Button variant="dark">
+                  <FaHome />
+                  {' '}
+                  Back to shop
+                </Button>
+              </Link>
             </Message>
           ) : (
             <ListGroup variant="flush">
@@ -69,7 +80,6 @@ const Cart = () => {
                     <Col md={2}>
                       <Link to={`/product/${item._id}`}>{item.name}</Link>
                     </Col>
-
                     <Col md={2}>
                       {item.price.toLocaleString("it-IT", {
                         style: "currency",
@@ -107,19 +117,21 @@ const Cart = () => {
             </ListGroup>
           )}
         </Col>
-        
         <Col md={4}>
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
                 <h2>
-                  Items in cart: {' '}
+                  Items in cart:{" "}
                   {cartItems.reduce((acc, item) => acc + Number(item.qty), 0)}
                 </h2>
                 <h2>
                   Subtotal:{" "}
                   {cartItems
-                    .reduce((acc, item) => acc + Number(item.qty) * item.price, 0)
+                    .reduce(
+                      (acc, item) => acc + Number(item.qty) * item.price,
+                      0
+                    )
                     .toLocaleString("it-IT", {
                       style: "currency",
                       currency: "EUR",
@@ -139,6 +151,16 @@ const Cart = () => {
             </ListGroup>
           </Card>
         </Col>
+        <Col md={12}>
+            <Button 
+                variant="primary" 
+                className="btn-block"
+                disabled={cartItems.length === 0}
+                onClick={homeHandler}
+                >
+              Continue Shopping
+            </Button>
+        </Col>
         <Col md={2}>
           <Button
             variant="primary"
@@ -149,7 +171,6 @@ const Cart = () => {
             Clear Cart
           </Button>
         </Col>
-        
       </Row>
     );
 }

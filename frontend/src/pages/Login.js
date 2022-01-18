@@ -20,6 +20,8 @@ const Login = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const {loading,error,userInfo} = userLogin; 
 
+  const userDelete = useSelector((state) => state.userDelete)
+    const {success} = userDelete;    
 
   const redirect = searchParams.search
     ? searchParams.search.split("=")[1]
@@ -47,6 +49,7 @@ const Login = () => {
     <FormContainer>
       <h1>Sign In</h1>
       {error && <Message variant="danger">{error}</Message>}
+      {success && <Message variant="success">Account Deleted successfully</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="email">

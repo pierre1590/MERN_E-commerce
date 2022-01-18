@@ -9,6 +9,7 @@ import SignUp from './pages/SignUp';
 import Cart from './pages/Cart/Cart';
 import UserProfile from './pages/UserProfile';
 import CookieAgree from './components/CookieAgree/CookieAgree';
+import  ShippingScreen  from "./pages/ShippingScreen/ShippingScreen.js";
 
 const App = () => {
   return (
@@ -23,9 +24,10 @@ const App = () => {
               <Route path='/cart/:id' element={<Cart/>} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<SignUp />} /> 
-              <Route path='/profile' element={<UserProfile />} />       
+              <Route path='/profile' element={<UserProfile />} />
+              <Route path='/shipping' element={<ShippingScreen />} />       
           </Routes> 
-          <CookieAgree /> 
+           <CookieAgree />  
         </Container>
       </main>
       <Footer />
