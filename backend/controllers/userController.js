@@ -20,6 +20,10 @@ const authUser = asyncHandler(async (req, res) => {
      isAdmin: user.isAdmin,
      token: generateToken(user._id)
     });
+  }else if (!user){
+    res.status(404).json({
+      message: "User not found"
+    });
   } else {
     res.status(401)
     throw new Error('Invalid Email or Password') 

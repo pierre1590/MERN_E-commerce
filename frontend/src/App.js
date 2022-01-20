@@ -10,7 +10,9 @@ import Cart from './pages/Cart/Cart';
 import UserProfile from './pages/UserProfile';
 import CookieAgree from './components/CookieAgree/CookieAgree';
 import  ShippingScreen  from "./pages/ShippingScreen/ShippingScreen.js";
-
+import Payment from "./pages/PaymentScreen.js";
+import Order from "./pages/PlaceOrder.js";
+import OrderScreen from './pages/OrderScreen.js'
 const App = () => {
   return (
     <Router> 
@@ -25,7 +27,10 @@ const App = () => {
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<SignUp />} /> 
               <Route path='/profile' element={<UserProfile />} />
-              <Route path='/shipping' element={<ShippingScreen />} />       
+              <Route path='/shipping' element={<ShippingScreen />} />      
+              <Route path='/payment' element={<Payment/>} />
+              <Route path='/placeorder' element={<Order />} />
+              <Route path='/order/:id' element={<OrderScreen />} />
           </Routes> 
            <CookieAgree />  
         </Container>

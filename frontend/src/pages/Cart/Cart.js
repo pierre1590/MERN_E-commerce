@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from 'react'
+import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {Link,useParams,useNavigate,useSearchParams} from 'react-router-dom'
 import {Row, 
@@ -15,8 +15,9 @@ import {FaTrash} from 'react-icons/fa'
 import './Cart.css'
 import {FaHome} from 'react-icons/fa'
 
+
 const Cart = () => {
-    const {id} = useParams() 
+    const {id:productId} = useParams() 
     
    const [searchParams] = useSearchParams()
     const navigate = useNavigate();
@@ -27,23 +28,30 @@ const Cart = () => {
     const cart = useSelector((state) => state.cart)
     const {cartItems} = cart
 
+    const userLogin = useSelector((state) => state.userLogin);
+  const {userInfo} = userLogin; 
 
-    
-    
-
+  
+  
     useEffect(() => {
-        if(id) {
-            dispatch(addToCart(id,qty))
+        if(productId) {
+            dispatch(addToCart(productId,qty))
         }   
-    }, [dispatch,id,qty])
+    }, [dispatch,productId,qty])
 
+    
     
     const removeFromCartHandler = (id) => {
         dispatch(removeFromCart(id));
     }
 
+   
     const checkoutHandler = () => {
-        navigate('/login?redirect=shipping')
+       if(!userInfo){
+          navigate('/login')
+       } else{
+          navigate('/shipping')
+       }
     }
 
     const clearCartHandler = () => {
@@ -71,8 +79,8 @@ const Cart = () => {
             </Message>
           ) : (
             <ListGroup variant="flush">
-              {cartItems.map((item) => (
-                <ListGroup.Item key={item._id}>
+              {cartItems.map((item,index) => (
+                <ListGroup.Item key={index}>
                   <Row>
                     <Col md={2}>
                       <Image src={item.image} alt={item.name} thumbnail />

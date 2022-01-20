@@ -8,8 +8,8 @@ const CookieAgree = () => {
             location="top"
             buttonText="Accept!"
             cookieName="myCookieAgree"
-            style={{ background: '#2B372B',opacity:'0.9',height:'140px',fontSize:'20px',textAlign:'center' }}
-            buttonStyle={{ color: '#4e503b', fontSize: '18px',borderRadius:'5px' }}
+            style={{ background: '#2B372B',opacity:'0.9',height:'80px',fontSize:'20px',textAlign:'center' }}
+            buttonStyle={{ color: '#4e503b', fontSize: '15px',borderRadius:'5px' }}
             expires={150}
             
         >
