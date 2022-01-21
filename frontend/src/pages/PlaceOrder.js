@@ -36,13 +36,7 @@ import { createOrder } from '../actions/orderActions'
 
     const placeOrderHandler = () => {
         dispatch(createOrder({
-          orderItems: cart.cartItems,
-          shipping: cart.shippingAddress, 
-          paymentMethod: cart.paymentMethod,
-          itemsPrice: cart.itemsPrice,
-          shippingPrice: cart.shippingPrice,
-          taxPrice: cart.taxPrice,
-          totalPrice: cart.totalPrice,
+         ...cart,orderItems:cart.cartItems
         }))
        
     }
@@ -157,7 +151,9 @@ import { createOrder } from '../actions/orderActions'
                       </Row>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                      {error && <Message variant="danger">{error}</Message>}
+                    {/*error message with duration of 10 seconds */}
+                    
+                      {error && <Message variant="danger" duration='10'>{error}</Message>}
                     </ListGroup.Item>
                     <ListGroup.Item>
                             <Button 

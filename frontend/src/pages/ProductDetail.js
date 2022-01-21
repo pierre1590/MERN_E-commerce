@@ -20,7 +20,7 @@ const ProductDetail = () => {
 
   const navigate = useNavigate()
   const {id} = useParams()
-
+  console.log(id)
   const dispatch = useDispatch()
 
   const productDetails = useSelector((state) => state.productDetails)

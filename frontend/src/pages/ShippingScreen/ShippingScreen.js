@@ -21,8 +21,6 @@ const ShippingScreen = () => {
   const [country, setCountry] = useState(shippingAddress.country);
   
 
-
-
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(saveShippingAddress({ address, city, postalCode, country }))
@@ -83,7 +81,7 @@ const ShippingScreen = () => {
                 Back
             </Button>
         </Link>
-        <Button type='submit' variant='primary'>
+        <Button type='submit' variant='primary' disabled={!address && !country}>
           Continue
         </Button>
       </Form>

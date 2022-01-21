@@ -30,7 +30,7 @@ const App = () => {
               <Route path='/shipping' element={<ShippingScreen />} />      
               <Route path='/payment' element={<Payment/>} />
               <Route path='/placeorder' element={<Order />} />
-              <Route path='/order/:id' element={<OrderScreen />} />
+              <Route path='/order/:id' element={<OrderScreen />} /> 
           </Routes> 
            <CookieAgree />  
         </Container>
