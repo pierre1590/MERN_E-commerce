@@ -12,7 +12,10 @@ import CookieAgree from './components/CookieAgree/CookieAgree';
 import  ShippingScreen  from "./pages/ShippingScreen/ShippingScreen.js";
 import Payment from "./pages/PaymentScreen.js";
 import Order from "./pages/PlaceOrder.js";
-import OrderScreen from './pages/OrderScreen.js'
+import OrderScreen from './pages/OrderScreen.js';
+import UsersScreenList from './pages/UsersScreenList.js';
+
+
 const App = () => {
   return (
     <Router> 
@@ -31,6 +34,7 @@ const App = () => {
               <Route path='/payment' element={<Payment/>} />
               <Route path='/placeorder' element={<Order />} />
               <Route path='/order/:id' element={<OrderScreen />} /> 
+              <Route path='/admin/userlist' element={<UsersScreenList />} />
           </Routes> 
            <CookieAgree />  
         </Container>

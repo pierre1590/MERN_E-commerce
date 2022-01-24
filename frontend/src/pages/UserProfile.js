@@ -1,11 +1,14 @@
  import React, {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
-import{Form,Button,Row,Col, Modal} from 'react-bootstrap'
+import{Form,Button,Row,Col, Modal, Table} from 'react-bootstrap'
+import { LinkContainer } from "react-router-bootstrap";
 import {useDispatch,useSelector} from 'react-redux'
 import Message from '../components/Message'
 import Loader from "../components/Loader"
 import { getUserDetails,deleteUser, updateUserProfile } from '../actions/userActions'
-
+import {listMyOrders} from '../actions/orderActions'
+import {FaTimes} from 'react-icons/fa'
+import {DateTime} from 'luxon'
 
 const UserProfile = () => {
     const [name, setName] = useState("");
@@ -31,6 +34,9 @@ const UserProfile = () => {
     const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
     const {success} = userUpdateProfile;
 
+    const orderListMy = useSelector((state) => state.orderListMy);
+    const {loading : loadingOrders, error: errorOrders, orders} = orderListMy;
+  
  
       useEffect(() => {
         if (!userInfo ) {
@@ -38,6 +44,7 @@ const UserProfile = () => {
         } else {
           if(!user.name) {
             dispatch(getUserDetails('profile'))
+            dispatch(listMyOrders())
           } else {
             setName(user.name)
             setEmail(user.email)
@@ -61,7 +68,8 @@ const UserProfile = () => {
           dispatch(deleteUser('profile'));
       }
 
-     
+
+
 
 
     return (
@@ -145,7 +153,7 @@ const UserProfile = () => {
               <Modal.Title>Delete Account</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <p style={{fontSize:20}}>Are you sure you want to delete this account?</p>
+              <p style={{fontSize:20}}>Are you sure you want to delete your account?</p>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
@@ -157,8 +165,57 @@ const UserProfile = () => {
             </Modal.Footer>
           </Modal>
         </Col>
-        <Col md={4} xs={12}>
+        <Col md={8} xs={12}>
           <h1 style={{textTransform: 'uppercase'}}>My Orders</h1>
+          {loadingOrders ? (
+          <Loader />
+        ) : errorOrders ? (
+          <Message variant='danger'>{errorOrders}</Message>
+        ) : (
+          <Table striped bordered hover responsive className='table-sm'>
+            <thead style={{textAlign: 'center'}}>
+              <tr>
+                <th>ID</th>
+                <th>DATE</th>
+                <th>TOTAL</th>
+                <th>PAID</th>
+                <th>DELIVERED</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <tr style={{textAlign: 'center'}} key={order._id}>
+                  <td>{order._id}</td>
+                  {/*Convert oreder.createdAt from YYYY/MM/DD to DD/MM/YYYY with luxon*/}
+                  <td>{DateTime.fromISO(order.createdAt).toFormat('yyyy/MM/dd HH:mm:ss ZZZZ')}</td>
+                  <td>{order.totalPrice.toFixed(2)} €</td>
+                  <td>
+                    {order.isPaid ? (
+                      DateTime.fromISO(order.paidAt).toFormat('yyyy/MM/dd HH:mm:ss ZZZZ') 
+                    ) : (
+                      <FaTimes style={{color:'red'}} />
+                    )}
+                  </td>
+                  <td>
+                    {order.isDelivered ? (
+                      order.deliveredAt.substring(0, 10)
+                    ) : (
+                     <FaTimes style={{color:'red'}} />
+                    )}
+                  </td>
+                  <td>
+                    <LinkContainer to={`/order/${order._id}`}>
+                      <Button className='btn-sm' variant='light'>
+                        Details
+                      </Button>
+                    </LinkContainer>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        )}
         </Col>
       </Row>
     );

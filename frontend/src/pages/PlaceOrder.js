@@ -27,6 +27,7 @@ import { createOrder } from '../actions/orderActions'
 
     const orderCreate = useSelector((state) => state.orderCreate)
     const {order, success, error} = orderCreate
+    
     useEffect(() => {
         if(success){
           navigate(`/order/${order._id}`)
@@ -51,10 +52,11 @@ import { createOrder } from '../actions/orderActions'
                 <h2>Shipping</h2>
                 <p>
                 <strong>Address:</strong>{' '}
-                {cart.shippingAddress.address},{' '} 
-                {cart.shippingAddress.postalCode},{' '}
-                 {cart.shippingAddress.city},{' '}
-                {cart.shippingAddress.country}
+                  {cart.shippingAddress.address}, 
+                  {cart.shippingAddress.postalCode}{' '}
+                  {cart.shippingAddress.city}{' '},
+                  {cart.shippingAddress.province},{' '}
+                  {cart.shippingAddress.country}
               </p>
               </ListGroup.Item>
 
@@ -73,7 +75,7 @@ import { createOrder } from '../actions/orderActions'
                     {cart.cartItems.map((item, index) => (
                       <ListGroup.Item key={index}>
                         <Row>
-                          <Col md={1}>
+                          <Col md={2}>
                             <Image
                               src={item.image}
                               alt={item.name}

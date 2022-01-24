@@ -114,7 +114,9 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 })
 
-//Delete an account when a user click on button "Delete Account"
+// @desc Delete user
+// @route DELETE /api/users/:id
+// @access  Private
 const deleteUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id)
 
@@ -129,10 +131,41 @@ const deleteUser = asyncHandler(async (req, res) => {
   }
 })
 
+
+// @desc Get all users
+// @route GET /api/users
+// @access  Private/Admin
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({});
+
+   res.status(200).json(users)
+})
+
+
+// @desc  Delete user
+// @route DELETE /api/users/:id
+// @access  Private/Admin
+const userDelete = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id)
+  if(user){
+    await user.remove()
+    res.status(200).json({
+      message: 'User deleted successfully'})
+  }else{
+    res.status(404)
+    throw new Error('User not found')
+  }
+})
+
+
+
+
 export {
     authUser,
     getUserProfile,
     registerUser,
     updateUserProfile,
-    deleteUser
+    deleteUser,
+    getUsers,
+    userDelete
 }

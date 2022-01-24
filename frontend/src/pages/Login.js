@@ -42,14 +42,13 @@ const Login = () => {
   }
 
   
-  
 
 
   return (
     <FormContainer>
       <h1>Sign In</h1>
       {error && <Message variant="danger">{error}</Message>}
-      {success && <Message variant="success">Account Deleted successfully</Message>}
+      {success && <Message variant="success">Account deleted successfully</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="email">
@@ -61,6 +60,7 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Group>
+       
         <Form.Group controlId="password">
           <Form.Label>Password</Form.Label>
           <Form.Control
@@ -70,6 +70,8 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
+        {/*Create a checkbox for remember email user with function rememberMeHandler */}
+        
         <Button variant="primary" type="submit" style={{margin:'4% 40%'}}>
           Sign In
         </Button>
