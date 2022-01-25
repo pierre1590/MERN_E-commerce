@@ -76,7 +76,7 @@ const UsersScreenList = () => {
                       )}
                     </td>
                     <td>
-                      <LinkContainer to={`/user/${user._id}/edit`}>
+                      <LinkContainer to={`/admin/user/${user._id}/edit`}>
                         <Button variant="light" className='btn-sm'>
                           <FaEdit />
                         </Button>
@@ -95,7 +95,7 @@ const UsersScreenList = () => {
                         <Modal.Title>Delete Account</Modal.Title>
                       </Modal.Header>
                       <Modal.Body>
-                        <p style={{ fontSize: 20 }}>Are you sure you want to delete this account?</p>
+                        <p style={{ fontSize: 20 }}>Are you sure you want to delete this account from the Users list?</p>
                       </Modal.Body>
                       <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>

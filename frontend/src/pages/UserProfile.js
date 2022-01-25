@@ -153,7 +153,7 @@ const UserProfile = () => {
               <Modal.Title>Delete Account</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <p style={{fontSize:20}}>Are you sure you want to delete your account?</p>
+              <p style={{fontSize:20}}>Are you sure you want to delete your account, {user.name}?</p>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>

@@ -81,7 +81,8 @@ export const detailsOrder = (orderId) => async (dispatch,getState) => {
 
     const { data } = await axios.get(`/api/orders/${orderId}`,config);
     dispatch({ 
-      type: ORDER_DETAILS_SUCCESS, payload: data });
+      type: ORDER_DETAILS_SUCCESS, 
+      payload: data });
   } catch (error) {
     dispatch({
       type: ORDER_DETAILS_FAIL,
@@ -117,7 +118,8 @@ export const payOrder = (orderId,paymentResult) => async (dispatch,getState) => 
         config
     );
     dispatch({ 
-      type: ORDER_PAY_SUCCESS, payload: data });
+      type: ORDER_PAY_SUCCESS, 
+      payload: data });
   } catch (error) {
     dispatch({
       type: ORDER_PAY_FAIL,

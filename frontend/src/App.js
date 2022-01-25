@@ -14,6 +14,7 @@ import Payment from "./pages/PaymentScreen.js";
 import Order from "./pages/PlaceOrder.js";
 import OrderScreen from './pages/OrderScreen.js';
 import UsersScreenList from './pages/UsersScreenList.js';
+import UserEdit from './pages/UserEdit.js'
 
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
               <Route path='/placeorder' element={<Order />} />
               <Route path='/order/:id' element={<OrderScreen />} /> 
               <Route path='/admin/userlist' element={<UsersScreenList />} />
+              <Route path='/admin/user/:id/edit' element={<UserEdit />} />
           </Routes> 
            <CookieAgree />  
         </Container>

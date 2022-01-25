@@ -26,8 +26,10 @@ import { FaUser} from 'react-icons/fa'
     const { order, loading, error } = orderDetails;
 
     
-    const orderPay = useSelector((state) => state.orderPay);
+     const orderPay = useSelector((state) => state.orderPay);
     const { loading:loadingPay, success:successPay } = orderPay;
+
+   
 
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
@@ -39,6 +41,7 @@ import { FaUser} from 'react-icons/fa'
 
       const addPayPalScript = async () => {
         const { data: clientId } = await axios.get('/api/config/paypal')
+        
         const script = document.createElement('script')
         script.type = 'text/javascript'
         script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
@@ -49,9 +52,9 @@ import { FaUser} from 'react-icons/fa'
         document.body.appendChild(script)
       }
   
-      if (!order || successPay || order._id !== orderId) {
+
+      if (!order || !successPay) {
         dispatch({ type: ORDER_PAY_RESET })
-        
         dispatch(detailsOrder(orderId))
       } else if (!order.isPaid) {
         if (!window.paypal) {
@@ -60,15 +63,13 @@ import { FaUser} from 'react-icons/fa'
           setSdkReady(true)
         }
       }
-    }, [dispatch,,navigate,userInfo, orderId, successPay,  order])
- 
+    }, [navigate, dispatch, orderId, successPay, order, userInfo])
+
+
     const successPaymentHandler = (paymentResult) => {
       console.log(paymentResult)
       dispatch(payOrder(orderId, paymentResult))
     }
-
-
-
 
 
    //Calculates prices
@@ -81,7 +82,14 @@ import { FaUser} from 'react-icons/fa'
         order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
       )
     }
-    
+    // Reload the page 
+    if(!loading && !error){
+      setTimeout(() => {
+          window.location.reload(true)
+      }, 15000);
+    }
+   
+
     return loading ? (
       <Loader />
     ) : error ? (
@@ -95,7 +103,7 @@ import { FaUser} from 'react-icons/fa'
           </Button>
         </Link>
         <h1 style={{ textTransform: "uppercase" }}>Order n. {orderId}</h1>
-        <p style={{ textTransform: "uppercase",fontSize: "20px"}}><span>Created on {DateTime.fromISO(order.createdAt).toFormat("ccc yyyy/MM/dd HH:mm:ss ZZZZ z ")}</span></p>
+        <p style={{ textTransform: "uppercase",fontSize: "20px"}}><span> {DateTime.fromISO(order.createdAt).toFormat("ccc yyyy/MM/dd HH:mm:ss ZZZZ z ")}</span></p>
         <Row>
           <Col md={8}>
             <ListGroup variant="flush">
@@ -221,18 +229,19 @@ import { FaUser} from 'react-icons/fa'
                   </Row>
                 </ListGroup.Item>
                 {!order.isPaid && (
-                  <ListGroup.Item>
-                    {loadingPay && <Loader />}
-                    {!sdkReady ? (
-                      <Loader />
-                    ) : (
-                      <PayPalButton
-                        amount={order.totalPrice}
-                        onSuccess={successPaymentHandler}
-                      />
-                    )}
-                  </ListGroup.Item>
-                )}
+                <ListGroup.Item>
+                  {loadingPay && <Loader />}
+                  {!sdkReady ? (
+                    <Loader />
+                  ) : (
+                    <PayPalButton
+                      amount={order.totalPrice}
+                      onSuccess={successPaymentHandler}
+                    />
+                  )}
+                </ListGroup.Item>
+              )}
+              
               </ListGroup>
             </Card>
           </Col>

@@ -165,7 +165,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         },
       }
   
-      const { data } = await axios.delete(`/api/users/${id}`, config)
+     await axios.delete(`/api/users/${id}`, config)
       
       dispatch({
         type: USER_DELETE_SUCCESS,
@@ -284,7 +284,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         },
       }
   
-      const { data } = await axios.delete(`/api/users/${id}`, config)
+       await axios.delete(`/api/users/${id}`, config)
   
       dispatch({
         type: USER_DELETE_ADMIN_SUCCESS,

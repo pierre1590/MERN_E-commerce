@@ -7,6 +7,7 @@ import Loader from "../components/Loader"
 import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
 
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -60,7 +61,8 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Group>
-       
+        
+
         <Form.Group controlId="password">
           <Form.Label>Password</Form.Label>
           <Form.Control
@@ -70,7 +72,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        {/*Create a checkbox for remember email user with function rememberMeHandler */}
+        
         
         <Button variant="primary" type="submit" style={{margin:'4% 40%'}}>
           Sign In
