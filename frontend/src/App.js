@@ -15,6 +15,7 @@ import Order from "./pages/PlaceOrder.js";
 import OrderScreen from './pages/OrderScreen.js';
 import UsersScreenList from './pages/UsersScreenList.js';
 import UserEdit from './pages/UserEdit.js'
+import ProductList from './pages/ProductList.js'
 
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
               <Route path='/order/:id' element={<OrderScreen />} /> 
               <Route path='/admin/userlist' element={<UsersScreenList />} />
               <Route path='/admin/user/:id/edit' element={<UserEdit />} />
+              <Route path='/admin/productlist' element={<ProductList />} />
           </Routes> 
            <CookieAgree />  
         </Container>

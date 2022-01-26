@@ -40,6 +40,7 @@ const UsersScreenList = () => {
     const deleteHandler = (id) => {
         dispatch(deleteAdminUser(id))
         window.location.reload()
+        handleClose()
     }
 
   return (
