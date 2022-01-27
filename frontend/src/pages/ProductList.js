@@ -5,8 +5,14 @@ import { Table, Button, Row, Col,Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { listProducts, deleteProduct } from "../actions/productActions";
+import { 
+  listProducts, 
+  deleteProduct,
+} from "../actions/productActions";
+import {PRODUCT_CREATE_RESET} from '../constants/productConstants';
 import { FaEdit, FaTrashAlt, FaPlus } from "react-icons/fa";
+
+
 
 const ProductList = () => {
   const [show, setShow] = useState(false)
@@ -20,28 +26,41 @@ const ProductList = () => {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
-  const productDelete = useSelector((state) => state.productDelete);
-  const { loading: loadingDelete, error: errorDelete, success:successDelete } = productDelete;
+  const productDelete = useSelector((state) => state.productDelete)
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = productDelete
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
  
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts());
-    } else {
-      navigate("/login");
-    }
-  }, [dispatch, navigate, userInfo,successDelete]);
+    dispatch({ type: PRODUCT_CREATE_RESET})
+
+    if (!userInfo.isAdmin) {
+     navigate('/login')
+    } 
+
+    dispatch(listProducts());
+
+  }, [
+    dispatch, 
+    navigate, 
+    userInfo,
+    successDelete
+  ]);
 
   const deleteHandler = (id) => {
       dispatch(deleteProduct(id));
       handleClose();
+      window.location.reload();
   };
 
-  const createProductHandler = (product) => {
-    //Create Product
+  const createProductHandler = () => {
+    navigate('/admin/product/new')
   };
 
   

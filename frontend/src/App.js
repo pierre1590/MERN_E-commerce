@@ -16,6 +16,8 @@ import OrderScreen from './pages/OrderScreen.js';
 import UsersScreenList from './pages/UsersScreenList.js';
 import UserEdit from './pages/UserEdit.js'
 import ProductList from './pages/ProductList.js'
+import CreateProduct from './pages/CreateProduct.js'
+import ProductEdit from './pages/ProductEdit.js'
 
 
 const App = () => {
@@ -39,6 +41,8 @@ const App = () => {
               <Route path='/admin/userlist' element={<UsersScreenList />} />
               <Route path='/admin/user/:id/edit' element={<UserEdit />} />
               <Route path='/admin/productlist' element={<ProductList />} />
+              <Route path='/admin/product/new' element={<CreateProduct />} />
+              <Route path='/admin/product/:id/edit' element={<ProductEdit />} />
           </Routes> 
            <CookieAgree />  
         </Container>

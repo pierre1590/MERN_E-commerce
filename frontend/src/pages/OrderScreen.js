@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react'
 import { Link,useParams,useNavigate } from 'react-router-dom'
-import {  Row, Col, ListGroup, Image, Card,Button } from 'react-bootstrap'
+import {  Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from "../components/Loader"
@@ -96,11 +96,9 @@ import { FaUser} from 'react-icons/fa'
       <Message variant="danger">{error}</Message>
     ) : (
       <>
-        <Link to="/profile">
-          <Button variant="dark">
+        <Link to="/profile" className="btn btn-light">
             <FaUser />
-             Profile
-          </Button>
+            Profile
         </Link>
         <h1 style={{ textTransform: "uppercase" }}>Order n. {orderId}</h1>
         <p style={{ textTransform: "uppercase",fontSize: "20px"}}><span> {DateTime.fromISO(order.createdAt).toFormat("ccc yyyy/MM/dd HH:mm:ss ZZZZ z ")}</span></p>
