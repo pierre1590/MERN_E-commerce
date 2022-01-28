@@ -172,7 +172,7 @@ const UserProfile = () => {
         ) : errorOrders ? (
           <Message variant='danger'>{errorOrders}</Message>
         ) : (
-          <Table striped bordered hover responsive className='table-sm'>
+          <Table striped bordered hover responsive  className='table-lg'>
             <thead style={{textAlign: 'center'}}>
               <tr>
                 <th>ID</th>
@@ -199,7 +199,7 @@ const UserProfile = () => {
                   </td>
                   <td>
                     {order.isDelivered ? (
-                      order.deliveredAt.substring(0, 10)
+                      DateTime.fromISO(order.deliveredAt).toFormat('yyyy/MM/dd HH:mm:ss ZZZZ')
                     ) : (
                      <FaTimes style={{color:'red'}} />
                     )}

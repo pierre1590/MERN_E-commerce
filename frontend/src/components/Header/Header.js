@@ -1,10 +1,11 @@
 import React from "react";
+
 import {useSelector,useDispatch} from 'react-redux'
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
 import {logout} from '../../actions/userActions'
-
+import SearchBox from '../SearchBox'
 
 const Header = () => {
     const cart = useSelector((state) => state.cart)
@@ -23,17 +24,18 @@ const Header = () => {
     <header>
       <Navbar
         bg="dark"
-        expand="xl"
+        expand="lg"
         variant="dark"
         collapseOnSelect
-        style={{ height: "auto", textTransform: "uppercase", padding: "10px" }}
+        style={{ height: "auto", textTransform: "uppercase", padding: "10px",justifyContent: 'space-between'}}
       >
         <Container fluid>
           <LinkContainer to="/">
-            <Navbar.Brand style={{ marginLeft: "5%" }}>Shop</Navbar.Brand>
+            <Navbar.Brand style={{ marginLeft: "10%" }}>Shop</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
+          <Route render={({history}) => <SearchBox history={history}/>} />
             <Nav className="ms-auto" style={{ marginRight: "10%" }}>
               <LinkContainer to="/cart">
                 <Nav.Link>

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import {  Container,Row,Col } from 'react-bootstrap';
 import{DateTime} from 'luxon';
@@ -12,10 +13,10 @@ const Footer = () => {
             <Col className="text-center py-3">
                 <Row>
                     <p>
-                        <a href="https://www.instagram.com/">
+                        <a href="#">
                             <FaInstagram   className='instagram'/>
                         </a>
-                        <a href="https://www.facebook.com/">
+                        <a href="#">
                             <FaFacebook   className='facebook'/>
                         </a>
                     </p>

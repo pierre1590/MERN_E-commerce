@@ -18,7 +18,7 @@ import UserEdit from './pages/UserEdit.js'
 import ProductList from './pages/ProductList.js'
 import CreateProduct from './pages/CreateProduct.js'
 import ProductEdit from './pages/ProductEdit.js'
-
+import OrderList from './pages/OrderList.js'
 
 const App = () => {
   return (
@@ -43,6 +43,8 @@ const App = () => {
               <Route path='/admin/productlist' element={<ProductList />} />
               <Route path='/admin/product/new' element={<CreateProduct />} />
               <Route path='/admin/product/:id/edit' element={<ProductEdit />} />
+              <Route path='/admin/orderlist' element={<OrderList />} />
+              <Route path='/search:Keyword' element={<HomePage />} />
           </Routes> 
            <CookieAgree />  
         </Container>

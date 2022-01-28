@@ -1,15 +1,15 @@
 import React, {useState, useEffect } from 'react'
 import { Link,useParams,useNavigate } from 'react-router-dom'
-import {  Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
+import {  Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from "../components/Loader"
 import { 
   detailsOrder, 
-  payOrder} from '../actions/orderActions'
+  payOrder,deliverOrder } from '../actions/orderActions'
 import axios from 'axios'
 import {PayPalButton} from 'react-paypal-button-v2'
-import {ORDER_PAY_RESET} from '../constants/orderConstants'
+import {ORDER_PAY_RESET,ORDER_DELIVER_RESET} from '../constants/orderConstants'
 import {DateTime} from 'luxon'
 import { FaUser} from 'react-icons/fa'
 
@@ -29,7 +29,8 @@ import { FaUser} from 'react-icons/fa'
      const orderPay = useSelector((state) => state.orderPay);
     const { loading:loadingPay, success:successPay } = orderPay;
 
-   
+    const orderDeliver = useSelector((state) => state.orderDeliver);
+    const { loading:loadingDeliver, success:successDeliver } = orderDeliver;
 
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
@@ -53,8 +54,9 @@ import { FaUser} from 'react-icons/fa'
       }
   
 
-      if (!order || !successPay) {
+      if (!order || successPay || successDeliver) {
         dispatch({ type: ORDER_PAY_RESET })
+        dispatch({ type: ORDER_DELIVER_RESET })
         dispatch(detailsOrder(orderId))
       } else if (!order.isPaid) {
         if (!window.paypal) {
@@ -63,7 +65,7 @@ import { FaUser} from 'react-icons/fa'
           setSdkReady(true)
         }
       }
-    }, [navigate, dispatch, orderId, successPay, order, userInfo])
+    }, [navigate, dispatch, orderId, successPay, order, successDeliver,userInfo])
 
 
     const successPaymentHandler = (paymentResult) => {
@@ -71,6 +73,10 @@ import { FaUser} from 'react-icons/fa'
       dispatch(payOrder(orderId, paymentResult))
     }
 
+    const deliverHandler = () => {
+      dispatch(deliverOrder(order))
+    }
+    
 
    //Calculates prices
     if(!loading && !error){
@@ -82,13 +88,7 @@ import { FaUser} from 'react-icons/fa'
         order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
       )
     }
-    // Reload the page 
-    if(!loading && !error){
-      setTimeout(() => {
-          window.location.reload(true)
-      }, 15000);
-    }
-   
+    
 
     return loading ? (
       <Loader />
@@ -122,7 +122,7 @@ import { FaUser} from 'react-icons/fa'
                 {order.isDelivered ? (
                   <Message variant="success">
                     Delivered on{" "}
-                    {DateTime.fromISO(order.deliveredAt).toFormat("ccc yyyy/MM/dd HH:mm:ss ZZZZ")} 
+                    {DateTime.fromISO(order.deliveredAt).toFormat("ccc yyyy/MM/dd HH:mm:ss ZZZZ z")} 
                   </Message>
                 ) : (
                   <Message variant="danger">Not Delivered</Message>
@@ -239,7 +239,21 @@ import { FaUser} from 'react-icons/fa'
                   )}
                 </ListGroup.Item>
               )}
-              
+              {loadingDeliver && <Loader />}
+              {userInfo && 
+                userInfo.isAdmin && 
+                order.isPaid && 
+                !order.isDelivered && (
+                <ListGroup.Item>
+                    <Button 
+                        type="button" 
+                        className="btn btn-block"
+                        onClick={deliverHandler}
+                      >
+                          Mark As Delivered
+                        </Button>
+                </ListGroup.Item>
+              )}
               </ListGroup>
             </Card>
           </Col>
