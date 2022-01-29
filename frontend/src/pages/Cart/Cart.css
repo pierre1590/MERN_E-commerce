@@ -4,7 +4,7 @@
  }
  
  .cart-icon span{
-     background: #f01;
+     background: #03a;
      border-radius: 50%;
      color: white;
      position: absolute;
@@ -14,14 +14,14 @@
      font-size: 0.9rem;
  }
 
- @media screen  and (min-width: 320px){
+ @media screen  and (max-width: 320px){
     .cart-icon span{
         top:-40px;
         right: 195px;
     }
  }
 
- @media screen  and (min-width: 375px){
+ @media screen  and (max-width: 375px){
     .cart-icon span{
         top:-40px;
         right: 242px;

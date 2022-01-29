@@ -20,14 +20,16 @@ import CreateProduct from './pages/CreateProduct.js'
 import ProductEdit from './pages/ProductEdit.js'
 import OrderList from './pages/OrderList.js'
 
+
 const App = () => {
   return (
     <Router> 
-      <Header />
+      <Header/>
       <main className='py-3'>
         <Container>
+       
           <Routes>
-              <Route path='/' element={<HomePage />}  exact/>
+              
               <Route path='/product/:id' element={<ProductDetail />} />
               <Route path='/cart' element={<Cart />} />
               <Route path='/cart/:id' element={<Cart/>} />
@@ -44,7 +46,8 @@ const App = () => {
               <Route path='/admin/product/new' element={<CreateProduct />} />
               <Route path='/admin/product/:id/edit' element={<ProductEdit />} />
               <Route path='/admin/orderlist' element={<OrderList />} />
-              <Route path='/search:Keyword' element={<HomePage />} />
+              <Route path='/search/:keyword' element={<HomePage />} exact/>
+              <Route path='/' element={<HomePage />}  exact/>
           </Routes> 
            <CookieAgree />  
         </Container>

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {Form, Button} from 'react-bootstrap'
-import{useNavigate} from 'react-router-dom'
+import {Form,  Button} from 'react-bootstrap'
+import {useNavigate} from 'react-router-dom'
+import { FaSearch } from 'react-icons/fa';
 
 const SearchBox = () => {
     const [keyword, setKeyword] = useState('')
@@ -9,31 +10,29 @@ const SearchBox = () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        if(keyword) {
+        if(keyword.trim()){
             navigate(`/search/${keyword}`)
         } else {
             navigate('/')
         }
     }
-    return (
-        <Form onSubmit={submitHandler} inline>
-            <Form.Control 
-                type="text" 
-                placeholder="Search products..." 
-                value={keyword} 
-                name='q'
-                className='mr-sm-2 ml-sm-5'
-                onChange={(e) => setKeyword(e.target.value)} />
-            <Button 
-                type="submit"  
-                variant="outline-success"
-                className='p-2'
-                >
-                    Search
+      
+   return (
+       <>
+         {/*Text and button on the same line */}
+            <Form inline onSubmit={submitHandler}>
+                <Form.Control 
+                    type="text" 
+                    placeholder="Search products..." 
+                    className="mr-sm-2"
+                    value={keyword} 
+                    onChange={(e) => setKeyword(e.target.value)}/>
+                <Button variant="success" type='submit'>
+                    <FaSearch />
                 </Button>
-        </Form>
-    )
-
+            </Form>
+       </>
+   )
 }
 
 export default SearchBox

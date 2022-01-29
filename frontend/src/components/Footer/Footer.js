@@ -13,10 +13,10 @@ const Footer = () => {
             <Col className="text-center py-3">
                 <Row>
                     <p>
-                        <a href="#">
+                        <a href="/">
                             <FaInstagram   className='instagram'/>
                         </a>
-                        <a href="#">
+                        <a href="/">
                             <FaFacebook   className='facebook'/>
                         </a>
                     </p>

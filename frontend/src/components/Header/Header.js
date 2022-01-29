@@ -1,11 +1,13 @@
 import React from "react";
-
+import './Header.css'
+import {Route} from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
 import {logout} from '../../actions/userActions'
 import SearchBox from '../SearchBox'
+
 
 const Header = () => {
     const cart = useSelector((state) => state.cart)
@@ -20,22 +22,24 @@ const Header = () => {
     const logoutHandler = () => {
       dispatch(logout())
     }
+
+
   return (
     <header>
       <Navbar
-        bg="dark"
-        expand="lg"
+        style={{background:'linear-gradient(90deg, blue, lightcoral )',textTransform:'uppercase',fontSize:'18px'}}
+        expand="xl" 
         variant="dark"
+       className="navbar"
         collapseOnSelect
-        style={{ height: "auto", textTransform: "uppercase", padding: "10px",justifyContent: 'space-between'}}
       >
-        <Container fluid>
+        <Container fluid >
           <LinkContainer to="/">
-            <Navbar.Brand style={{ marginLeft: "10%" }}>Shop</Navbar.Brand>
-          </LinkContainer>
+            <Navbar.Brand >Shop</Navbar.Brand>
+          </LinkContainer> 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-          <Route render={({history}) => <SearchBox history={history}/>} />
+          <SearchBox style={{display:'inline'}} className="searchbox"/>
             <Nav className="ms-auto" style={{ marginRight: "10%" }}>
               <LinkContainer to="/cart">
                 <Nav.Link>
@@ -64,7 +68,7 @@ const Header = () => {
                   </NavDropdown.Item>
                 </NavDropdown>
               ) : (
-                <LinkContainer to="/login">
+                <LinkContainer to="/login" style={{textTransform: "uppercase" }}>
                   <Nav.Link>
                     <FaUser />
                     Sign In
