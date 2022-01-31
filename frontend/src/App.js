@@ -23,33 +23,31 @@ import OrderList from './pages/OrderList.js'
 
 const App = () => {
   return (
-    <Router> 
-      <Header/>
-      <main className='py-3'>
+    <Router>
+      <Header />
+      <main className="py-3">
         <Container>
-       
           <Routes>
-              
-              <Route path='/product/:id' element={<ProductDetail />} />
-              <Route path='/cart' element={<Cart />} />
-              <Route path='/cart/:id' element={<Cart/>} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/register' element={<SignUp />} /> 
-              <Route path='/profile' element={<UserProfile />} />
-              <Route path='/shipping' element={<ShippingScreen />} />      
-              <Route path='/payment' element={<Payment/>} />
-              <Route path='/placeorder' element={<Order />} />
-              <Route path='/order/:id' element={<OrderScreen />} /> 
-              <Route path='/admin/userlist' element={<UsersScreenList />} />
-              <Route path='/admin/user/:id/edit' element={<UserEdit />} />
-              <Route path='/admin/productlist' element={<ProductList />} />
-              <Route path='/admin/product/new' element={<CreateProduct />} />
-              <Route path='/admin/product/:id/edit' element={<ProductEdit />} />
-              <Route path='/admin/orderlist' element={<OrderList />} />
-              <Route path='/search/:keyword' element={<HomePage />} exact/>
-              <Route path='/' element={<HomePage />}  exact/>
-          </Routes> 
-           <CookieAgree />  
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart/:id" element={<Cart />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<SignUp />} />
+            <Route path="/profile" element={<UserProfile />} />
+            <Route path="/shipping" element={<ShippingScreen />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/placeorder" element={<Order />} />
+            <Route path="/order/:id" element={<OrderScreen />} />
+            <Route path="/admin/userlist" element={<UsersScreenList />} />
+            <Route path="/admin/user/:id/edit" element={<UserEdit />} />
+            <Route path="/admin/productlist" element={<ProductList />} />
+            <Route path="/admin/product/new" element={<CreateProduct />} />
+            <Route path="/admin/product/:id/edit" element={<ProductEdit />} />
+            <Route path="/admin/orderlist" element={<OrderList />} />
+            <Route path="/search/:keyword" element={<HomePage />} exact />
+            <Route path="/" element={<HomePage />} exact />
+          </Routes>
+          <CookieAgree />
         </Container>
       </main>
       <Footer />

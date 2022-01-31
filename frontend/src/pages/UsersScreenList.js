@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import{Table,Button,Modal} from 'react-bootstrap'
 import {useDispatch,useSelector} from 'react-redux'
 import Message from '../components/Message'
-import Loader from "../components/Loader"
+import Loader from "../components/Loader/Loader"
 import {listUsers, deleteAdminUser} from '../actions/userActions'
 import {FaCheck, FaTimes, FaEdit, FaTrashAlt} from 'react-icons/fa'
 

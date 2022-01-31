@@ -12,9 +12,10 @@ import Rating from "../components/Rating/Rating";
 import { Link,useParams, useNavigate} from "react-router-dom";
 import {useDispatch,useSelector} from 'react-redux'
 import {listProductDetails, createProductReview } from '../actions/productActions'
-import Loader from "../components/Loader.js";
+import Loader from "../components/Loader/Loader";
 import Message from "../components/Message.js"
 import {PRODUCT_CREATE_REVIEW_RESET} from '../constants/productConstants'
+import Meta from '../components/Meta'
 
 
 const ProductDetail = () => {
@@ -90,6 +91,7 @@ const ProductDetail = () => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
+        <Meta title={product.name}/>
           <Row>
             <Col md={6}>
               <Image src={product.image} fluid alt={product.name} />

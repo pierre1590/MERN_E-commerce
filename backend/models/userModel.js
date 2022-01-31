@@ -19,15 +19,18 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         default: false, 
         required: true
-    }
+    },
+   
 }, {
     timestamps: true,
 })
 
+// function to check of passwords are matching
 userSchema.methods.matchPassword = async function(enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 }
 
+// encrypt password before saving
 userSchema.pre('save', async function(next) {
     if(!this.isModified('password')) {
         return next();

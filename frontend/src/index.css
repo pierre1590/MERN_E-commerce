@@ -28,3 +28,91 @@ button[type="submit"]{
     margin-right: 15px;
     margin-left: 15px;
 }
+
+/* carousel */
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active {
+  display: flex;
+}
+.carousel-caption {
+  position: absolute;
+  top: 0;
+}
+
+.carousel-caption h2 {
+  color: #fff;
+}
+
+.carousel img {
+  height: 300px;
+  padding: 30px;
+  margin: 5% 36%;
+  border-radius: 50%;
+}
+.carousel a {
+  margin: 0 auto;
+}
+
+/* Media query iphone 5/SE */
+@media only screen and (max-width: 320px) {
+  .carousel img {  
+    height: 130px;
+    padding: 10px;
+    margin: 5% 22%;
+    border-radius: 50%;
+  }
+  .carousel-caption h2 {
+    color: #f01;
+    font-size: 4vw;
+  }
+}
+
+
+/* Media query iphone 6/7/8 */
+@media only screen and (min-width: 321px) and (max-width: 375px) {
+  .carousel img {  
+    height: 180px;
+    padding: 10px;
+    margin: 5% 18%;
+    border-radius: 50%;
+  }
+
+  .carousel-caption h2 {
+    color: #f01;
+    font-size: 3.5vw;
+  }
+}
+
+/* Media query iphone 6/7/8 plus */
+@media only screen and (min-width: 376px) and (max-width: 414px) {
+  .carousel img {  
+    height: 220px;
+    padding: 10px;
+    margin: 5% 15%;
+    border-radius: 50%;
+  }
+
+  .carousel-caption h2 {
+    color: #f01;
+    font-size: 4.2vw;
+  }
+}
+
+/* Media query ipad pro */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .carousel img {  
+    height: 300px;
+    padding: 10px;
+    margin: 5% 30%;
+    border-radius: 50%;
+  }
+
+  .carousel-caption h2 {
+    color: #f01;
+    font-size: 4.2vw;
+  }
+}
+
+
+

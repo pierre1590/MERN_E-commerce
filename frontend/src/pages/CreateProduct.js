@@ -5,7 +5,7 @@ import {useNavigate,Link} from 'react-router-dom';
 import {useDispatch,useSelector} from 'react-redux';
 import { createProduct } from '../actions/productActions';
 import Message from '../components/Message';
-import Loader from '../components/Loader';
+import Loader from '../components/Loader/Loader';
 import {FaArrowLeft} from 'react-icons/fa';
 
 export const CreateProduct = () => {

@@ -150,7 +150,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
   }
 
 
-  //Delete account from database when click on the button "Delete Account"
+  
   export const deleteUser = (id) => async (dispatch, getState) => {
 
     try {

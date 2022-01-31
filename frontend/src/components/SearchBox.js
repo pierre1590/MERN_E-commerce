@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Form,  Button} from 'react-bootstrap'
+import {FormControl, InputGroup,   Button} from 'react-bootstrap'
 import {useNavigate} from 'react-router-dom'
 import { FaSearch } from 'react-icons/fa';
 
@@ -8,31 +8,38 @@ const SearchBox = () => {
 
     const navigate = useNavigate()
 
+    // if keyword is a string and not empty then navigate to search page, otherwise if the product is not found return a message to the user in a modal box
     const submitHandler = (e) => {
         e.preventDefault()
-        if(keyword.trim()){
+        if(keyword.length > 0){
             navigate(`/search/${keyword}`)
-        } else {
-            navigate('/')
-        }
+         } else {
+           alert('Please, enter the product to search for')
+         }
     }
-      
-   return (
-       <>
-         {/*Text and button on the same line */}
-            <Form inline onSubmit={submitHandler}>
-                <Form.Control 
-                    type="text" 
-                    placeholder="Search products..." 
-                    className="mr-sm-2"
-                    value={keyword} 
-                    onChange={(e) => setKeyword(e.target.value)}/>
-                <Button variant="success" type='submit'>
-                    <FaSearch />
-                </Button>
-            </Form>
-       </>
-   )
+    
+  
+
+      return (
+     <>
+     
+       <InputGroup className="mb-3 search-input" style={{marginLeft:'5%' }}>
+         <FormControl
+           type="text"
+           placeholder="Search Products..."
+           aria-label="searchProducts"
+           aria-describedby="basic-addon2"
+           value={keyword}
+           onChange={(e) => setKeyword(e.target.value)}
+         />
+         <Button variant="secondary" id="button-addon2" onClick={submitHandler} >
+           <FaSearch />
+         </Button>
+       </InputGroup>
+     </>
+   );
 }
 
 export default SearchBox
+
+

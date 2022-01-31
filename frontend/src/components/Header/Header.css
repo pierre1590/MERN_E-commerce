@@ -1,6 +1,76 @@
 .navbar{
-    height: 7vh;
     padding: 0;
     width: auto;
 }
 
+
+
+
+.brand{
+    font-size: 3rem;
+    background: #00f;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow:4px 3px 2px #faa;
+}
+
+
+/* Media query iphone 5/SE */
+@media only screen and (min-width: 321px) {
+    .brand{
+        font-size: 2rem;
+    }
+
+    .search-input{
+        width:70vw;
+    }
+}
+
+
+/* Media query iphone 6/7/8  */
+@media only screen and (min-width: 375px) {
+    .brand{
+        font-size: 2.5rem;
+    }
+
+    .search-input{
+        width: 75vw;
+    }
+}
+
+/* Media query Samsung */
+@media only screen and (min-width: 360px) {
+    .brand{
+        font-size: 2.5rem;
+    }
+
+    .search-input{
+        width: 75vw;
+    }
+}
+
+/* Media query for devices under or equal to 320px */
+@media only screen and (max-width: 320px) {
+    .brand{
+        font-size: 2rem;
+    }
+
+    .search-input{
+        width: 70vw;
+    }
+}
+
+
+
+
+
+@media only screen and (min-width: 1024px) {
+    .brand{
+        font-size: 3rem;
+    }
+
+    .search-input{
+        width: 20vw;
+    }
+}

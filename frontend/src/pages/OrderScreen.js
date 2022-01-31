@@ -3,7 +3,7 @@ import { Link,useParams,useNavigate } from 'react-router-dom'
 import {  Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
-import Loader from "../components/Loader"
+import Loader from "../components/Loader/Loader"
 import { 
   detailsOrder, 
   payOrder,deliverOrder } from '../actions/orderActions'

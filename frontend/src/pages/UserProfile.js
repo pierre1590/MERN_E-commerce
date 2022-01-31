@@ -4,11 +4,12 @@ import{Form,Button,Row,Col, Modal, Table} from 'react-bootstrap'
 import { LinkContainer } from "react-router-bootstrap";
 import {useDispatch,useSelector} from 'react-redux'
 import Message from '../components/Message'
-import Loader from "../components/Loader"
+import Loader from "../components/Loader/Loader"
 import { getUserDetails,deleteUser, updateUserProfile } from '../actions/userActions'
 import {listMyOrders} from '../actions/orderActions'
 import {FaTimes} from 'react-icons/fa'
 import {DateTime} from 'luxon'
+import {USER_UPDATE_PROFILE_RESET} from '../constants/userConstants'
 
 const UserProfile = () => {
     const [name, setName] = useState("");
@@ -42,7 +43,8 @@ const UserProfile = () => {
         if (!userInfo ) {
           navigate('/login')
         } else {
-          if(!user.name) {
+          if(!user || !user.name || success) {
+            dispatch({type: USER_UPDATE_PROFILE_RESET})
             dispatch(getUserDetails('profile'))
             dispatch(listMyOrders())
           } else {
@@ -50,7 +52,7 @@ const UserProfile = () => {
             setEmail(user.email)
           }
         }
-      }, [dispatch,navigate,  userInfo, user]);
+      }, [dispatch,navigate,  userInfo, user,success]);
   
     const submitHandler = (e) => {
       e.preventDefault();

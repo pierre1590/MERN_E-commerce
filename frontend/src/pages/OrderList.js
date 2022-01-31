@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import{Table,Button} from 'react-bootstrap'
 import {useDispatch,useSelector} from 'react-redux'
 import Message from '../components/Message'
-import Loader from "../components/Loader"
+import Loader from "../components/Loader/Loader"
 import {listOrders} from '../actions/orderActions'
 import { FaTimes} from 'react-icons/fa'
 

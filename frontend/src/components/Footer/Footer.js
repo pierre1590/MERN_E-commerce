@@ -22,7 +22,7 @@ const Footer = () => {
                     </p>
                 </Row>
                 <Row>
-                  <p className="text">Shop</p>
+                  <p className="text">E-Shop</p>
                 </Row>
                 <Row>
                     <p className="text">All rights reserved. &copy; {DateTime.local().toFormat('yyyy')}</p>
