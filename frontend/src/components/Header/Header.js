@@ -1,12 +1,12 @@
 import React from "react";
 import './Header.css'
-
 import {useSelector,useDispatch} from 'react-redux'
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
 import {logout} from '../../actions/userActions'
 import SearchBox from '../SearchBox'
+
 
 
 const Header = () => {
@@ -18,6 +18,7 @@ const Header = () => {
     const userLogin = useSelector((state) => state.userLogin)
     const {userInfo} = userLogin
 
+   
 
     const logoutHandler = () => {
       dispatch(logout())
@@ -59,15 +60,18 @@ const Header = () => {
                   )}
                 </Nav.Link>
               </LinkContainer>
-               {userInfo ? (
-                <NavDropdown title={userInfo.name} id="username">
+                   
+                  
+                    
+               {userInfo  ? ( 
+                   <><img src={userInfo.avatar} alt={userInfo.name} style={{width:'35px',height:'45px',borderRadius:'50%'}} /><NavDropdown title={userInfo.name} id="username">
                   <LinkContainer to="/profile">
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout
                   </NavDropdown.Item>
-                </NavDropdown>
+                </NavDropdown></>
               ) : (
                 <LinkContainer to="/login" style={{textTransform: "uppercase" }}>
                   <Nav.Link>

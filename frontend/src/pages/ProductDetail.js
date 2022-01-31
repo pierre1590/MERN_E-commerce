@@ -16,13 +16,13 @@ import Loader from "../components/Loader/Loader";
 import Message from "../components/Message.js"
 import {PRODUCT_CREATE_REVIEW_RESET} from '../constants/productConstants'
 import Meta from '../components/Meta'
-
+import {DateTime} from 'luxon'
 
 const ProductDetail = () => {
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
-
+  const [title, setTitle] = useState("");
 
   const navigate = useNavigate()
   const {id} = useParams()
@@ -72,8 +72,10 @@ const ProductDetail = () => {
       e.preventDefault()
       dispatch(
         createProductReview(id, {
+          title,
           rating,
           comment,
+         
         })
       )
       
@@ -94,7 +96,7 @@ const ProductDetail = () => {
         <Meta title={product.name}/>
           <Row>
             <Col md={6}>
-              <Image src={product.image} fluid alt={product.name} />
+              <Image src={product.image} fluid alt={product.name} style={{height:'400px',with:'550px'}}/>
             </Col>
             <Col md={3}>
               <ListGroup variant="flush">
@@ -182,9 +184,12 @@ const ProductDetail = () => {
               <ListGroup variant="flush">
                 {product.reviews.map((review) => (
                   <ListGroup.Item key={review._id}>
-                    <strong>{review.name}</strong>
+                  <strong style={{textTransform: 'uppercase'}}><img src={review.avatar} alt={review.name} style={{width:'50px',height:'50px',borderRadius:'50%',marginRight:'15px'}}/>{review.name}</strong>
+                  <div style={{display: 'flex',padding:'2px' }}>
                     <Rating value={review.rating} />
-                    <p>{review.createdAt.substring(0, 10)}</p>
+                    <strong>{review.title}</strong>
+                    </div>
+                    <p>Reviewed on {DateTime.fromISO(review.createdAt).toFormat("ccc yyyy/MM/dd TTT  ")}</p>
                     <p>{review.comment}</p>
                   </ListGroup.Item>
                 ))}
@@ -215,6 +220,14 @@ const ProductDetail = () => {
                           <option value="4">4 - Very Good</option>
                           <option value="5">5 - Excellent</option>
                         </Form.Control>
+                      </Form.Group>
+                      <Form.Group controlId="title">
+                        <Form.Label>Title</Form.Label>
+                        <Form.Control
+                          type="text"
+                          value={title}
+                          onChange={(e) => setTitle(e.target.value)}
+                        />
                       </Form.Group>
                       <Form.Group controlId="comment">
                         <Form.Label>Comment</Form.Label>

@@ -1,15 +1,17 @@
  import React, {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
-import{Form,Button,Row,Col, Modal, Table} from 'react-bootstrap'
+import{Form,Button,Row,Col, Modal, Table,Image} from 'react-bootstrap'
 import { LinkContainer } from "react-router-bootstrap";
 import {useDispatch,useSelector} from 'react-redux'
 import Message from '../components/Message'
 import Loader from "../components/Loader/Loader"
 import { getUserDetails,deleteUser, updateUserProfile } from '../actions/userActions'
 import {listMyOrders} from '../actions/orderActions'
-import {FaTimes} from 'react-icons/fa'
+import {FaTimes, FaUser} from 'react-icons/fa'
 import {DateTime} from 'luxon'
 import {USER_UPDATE_PROFILE_RESET} from '../constants/userConstants'
+import axios from 'axios'
+
 
 const UserProfile = () => {
     const [name, setName] = useState("");
@@ -18,6 +20,8 @@ const UserProfile = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [message, setMessage] = useState(null);
     const [show, setShow] = useState(false)
+    const[uploading,setUploading]=useState(false)
+    const [avatar, setAvatar] = useState(<FaUser/>);
 
     const handleClose = (state) => setShow(false)
     const handleShow = (state) => setShow(true)
@@ -48,6 +52,7 @@ const UserProfile = () => {
             dispatch(getUserDetails('profile'))
             dispatch(listMyOrders())
           } else {
+            setAvatar(user.avatar)
             setName(user.name)
             setEmail(user.email)
           }
@@ -60,10 +65,39 @@ const UserProfile = () => {
             setMessage("Passwords do not match");
             return;
         }else {
-           dispatch(updateUserProfile({id: user._id, name, email, password}))
+           dispatch(updateUserProfile({
+             id: user._id, 
+             name, 
+             email, 
+             password,
+             avatar
+          }))
         }
     };
 
+
+    const uploadFileHandler = async (e) => {
+      const file = e.target.files[0];
+      const formData = new FormData();
+      formData.append("image", file);
+      setUploading(true);
+  
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+  
+        const { data } = await axios.post("/api/upload", formData, config);
+  
+        setAvatar(data);
+        setUploading(false);
+      } catch (error) {
+        console.error(error);
+        setUploading(false);
+      }
+    };
     
       
       const deleteAccount = () => {
@@ -95,7 +129,32 @@ const UserProfile = () => {
           )}
           {loading && <Loader />}
 
+         
+
+
           <Form onSubmit={submitHandler}>
+          <div style={{alignSelf: 'center'}}>
+            <Image
+                src={avatar}
+                style={{  
+                  borderRadius: '50%',
+                  width: '200px',
+                  height: '200px',
+                  margin: '10px',
+                  alignSelf: 'center'
+                }}
+                alt="profile"
+              />
+            
+                <Form.Control 
+                  type="file"
+                  onChange={uploadFileHandler}
+                  accept="image/*"
+                  id='image-file'
+                 
+                />  
+          </div>
+
             <Form.Group controlId="name">
               <Form.Label>Name</Form.Label>
               <Form.Control

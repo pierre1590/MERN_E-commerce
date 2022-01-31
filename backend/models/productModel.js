@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const reviewSchema = mongoose.Schema({
     name: {type: String,required: true},
+    title:{type: String,required: true},
     rating: {type: Number, required: true, min: 0, max: 5},
     comment: {type: String, required: true},
     user: {
@@ -9,6 +10,7 @@ const reviewSchema = mongoose.Schema({
         ref: 'User',
         required: true,
     },
+    avatar: {type: String, required: true},
 }, 
 {
     timestamps: true,

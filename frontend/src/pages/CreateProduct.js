@@ -7,6 +7,7 @@ import { createProduct } from '../actions/productActions';
 import Message from '../components/Message';
 import Loader from '../components/Loader/Loader';
 import {FaArrowLeft} from 'react-icons/fa';
+import axios from 'axios'
 
 export const CreateProduct = () => {
     const [name, setName] = useState("");
@@ -16,6 +17,7 @@ export const CreateProduct = () => {
     const [category, setCategory] = useState("");
     const [brand, setBrand] = useState("");
     const [countInStock, setCountInStock] = useState("")
+    const [uploading, setUploading] = useState(false)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -28,10 +30,40 @@ export const CreateProduct = () => {
     product: createdProduct,
   } = productCreate
 
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    setUploading(true);
+
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      const { data } = await axios.post("/api/upload", formData, config);
+
+      setImage(data);
+      setUploading(false);
+    } catch (error) {
+      console.error(error);
+      setUploading(false);
+    }
+  };
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(createProduct(name, price, description, image, category, brand, countInStock))
+        dispatch(createProduct(
+           name,
+           price,
+           description,
+           image,
+           category, 
+           brand, 
+           countInStock
+           ))
     }
 
     useEffect(() => {
@@ -116,12 +148,20 @@ export const CreateProduct = () => {
             <Form.Group controlId="image">
                 <Form.Label>Image:</Form.Label>
                 <Form.Control
-                    type="file"
-                    placeholder="Upload image"
+                    type="text"
+                    placeholder="Enter image url"
                     value={image}
                     onChange={(e) => setImage(e.target.value)}
                 />
+                <Form.Control 
+                    type='file'
+                    onChange={uploadFileHandler}
+                    label='Choose file'
+                    accept="image/*"
+                    id='image-file'
+                />
             </Form.Group>
+
 
           <Button variant="success" type="submit">
             Create Product

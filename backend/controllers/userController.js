@@ -3,7 +3,6 @@ import generateToken from "../utils/generateToken.js";
 import User from '../models/userModel.js';
 
 
-
 // @desc Auth user & get token
 // @route POST /api/users/login
 // @access  Public
@@ -17,6 +16,7 @@ const authUser = asyncHandler(async (req, res) => {
      _id: user._id,
      name: user.name,
      email: user.email,
+     avatar: user.avatar,
      isAdmin: user.isAdmin,
      token: generateToken(user._id)
     });
@@ -42,6 +42,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
      _id: user._id,
      name: user.name,
      email: user.email,
+     avatar: user.avatar,
      isAdmin: user.isAdmin
     });
   } else {
@@ -65,10 +66,13 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error('User already exists') 
   }
  
+  const avatar = generateGravatar(email);
+
   const user = await User.create({
     name,
     email,
     password,
+    avatar,
   });
 
   if(user){
@@ -76,6 +80,7 @@ const registerUser = asyncHandler(async (req, res) => {
      _id: user._id,
      name: user.name,
      email: user.email,
+     avatar,
      isAdmin: user.isAdmin,
       token: generateToken(user._id),
     });
@@ -93,6 +98,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id)
 
   if (user) {
+    user.avatar = req.body.avatar || user.avatar
     user.name = req.body.name || user.name
     user.email = req.body.email || user.email
     if (req.body.password) {
@@ -103,6 +109,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
     res.status(200).json({
       _id: updatedUser._id,
+      avatar: updatedUser.avatar,
       name: updatedUser.name,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
