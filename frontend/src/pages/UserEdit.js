@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button,Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader/Loader";
@@ -13,7 +13,7 @@ const UserEdit = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
-
+  const [avatar, setAvatar] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -35,6 +35,7 @@ const UserEdit = () => {
       if (!user.name || user._id !== userId) {
         dispatch(getUserDetails(userId));
       } else {
+        setAvatar(user.avatar);
         setName(user.name);
         setEmail(user.email);
         setIsAdmin(user.isAdmin);
@@ -63,6 +64,17 @@ const UserEdit = () => {
           <Message variant='danger'>{error}</Message>
         ) : (
           <Form onSubmit={submitHandler}>
+          <Image
+                src={avatar}
+                alt={user.name}
+                style={{  
+                  borderRadius: '50%',
+                  width: '200px',
+                  height: '200px',
+                  margin: '10px',
+                  alignSelf: 'center'
+                }}
+              />
             <Form.Group controlId='name'>
               <Form.Label>Name</Form.Label>
               <Form.Control

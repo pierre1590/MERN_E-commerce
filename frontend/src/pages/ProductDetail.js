@@ -185,7 +185,7 @@ const ProductDetail = () => {
                 {product.reviews.map((review) => (
                   <ListGroup.Item key={review._id}>
                   <strong style={{textTransform: 'uppercase'}}><img src={review.avatar} alt={review.name} style={{width:'50px',height:'50px',borderRadius:'50%',marginRight:'15px'}}/>{review.name}</strong>
-                  <div style={{display: 'flex',padding:'2px' }}>
+                  <div style={{display: 'flex'}}>
                     <Rating value={review.rating} />
                     <strong>{review.title}</strong>
                     </div>

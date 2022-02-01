@@ -328,8 +328,10 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       dispatch({
         type: USER_UPDATE_SUCCESS,
       })
-  
+     
       dispatch({type: USER_DETAILS_SUCCESS,payload:data})
+
+      
     } catch (error) {
       const message =
         error.response && error.response.data.message

@@ -1,4 +1,3 @@
-import React from 'react';
 import gravatar from 'gravatar';
 
 const generateGravatar = (email) => {
