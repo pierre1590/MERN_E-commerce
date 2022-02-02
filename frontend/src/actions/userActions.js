@@ -26,6 +26,18 @@ import {USER_LOGIN_REQUEST,
         USER_UPDATE_REQUEST,
         USER_UPDATE_SUCCESS,
         USER_UPDATE_FAIL,
+        USER_EMAIL_VERIFICATION_REQUEST,
+        USER_EMAIL_VERIFICATION_SUCCESS,
+        USER_EMAIL_VERIFICATION_FAIL,
+        USER_CONFIRM_REQUEST,
+        USER_CONFIRM_SUCCESS,
+        USER_CONFIRM_FAIL,
+        USER_RESET_PASSWORD_REQUEST,
+	      USER_RESET_PASSWORD_SUCCESS,
+	      USER_RESET_PASSWORD_FAIL,
+        USER_EMAIL_SENT_REQUEST,
+        USER_EMAIL_SENT_SUCCESS,
+        USER_EMAIL_SENT_FAIL,
 } from '../constants/userConstants';
 import {ORDER_LIST_MY_RESET} from '../constants/orderConstants';
 
@@ -54,6 +66,7 @@ export const login = (email, password) => async(dispatch) => {
         })
 
         localStorage.setItem('userInfo', JSON.stringify(data))
+        localStorage.removeItem('promptEmailVerfication')
     } catch (error) {
         dispatch({
             type: USER_LOGIN_FAIL,
@@ -111,6 +124,65 @@ export const register = (name, email, password) => async(dispatch) => {
         })
     }
 }
+
+
+export const sendVerificationEmail = (email) => async (dispatch) => {
+	try {
+		dispatch({ type: USER_EMAIL_VERIFICATION_REQUEST });
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		};
+
+		const { data } = await axios.post(
+			'/api/users/confirm',
+			{ email },
+			config
+		);
+		dispatch({ type: USER_EMAIL_VERIFICATION_SUCCESS, payload: data });
+	} catch (error) {
+		dispatch({
+			type: USER_EMAIL_VERIFICATION_FAIL,
+			payload:
+				error.response && error.response.data.message
+					? error.response.data.message
+					: error.message,
+		});
+	}
+};
+
+
+export const confirmUser =
+	(emailToken, alreadyLoggedIn = false) =>
+	async (dispatch,getState) => {
+		try {
+			dispatch({ type: USER_CONFIRM_REQUEST });
+			const { data } = await axios.get(
+				`/api/users/confirm/${emailToken}`
+			);
+
+			
+			localStorage.removeItem('promptEmailVerfication');
+			dispatch({ type: USER_CONFIRM_SUCCESS, payload: true });
+
+			if (alreadyLoggedIn) {
+				dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+				localStorage.setItem('userInfo', JSON.stringify(data));
+			}
+
+			localStorage.removeItem('promptEmailVerfication');
+		} catch (error) {
+			dispatch({
+				type: USER_CONFIRM_FAIL,
+				payload:
+					error.response && error.response.data.message
+						? error.response.data.message
+						: error.message,
+			});
+		}
+	};
+
 
 export const getUserDetails = (id) => async (dispatch, getState) => {
     try {
@@ -343,3 +415,64 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       })
     }
   }
+
+  
+export const resetUserPassword =
+(passwordToken, password) => async (dispatch) => {
+  try {
+    dispatch({ type: USER_RESET_PASSWORD_REQUEST });
+
+    
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const { data } = await axios.put(
+      '/api/users/reset',
+      { passwordToken, password },
+      config
+    );
+
+   
+    dispatch({ type: USER_RESET_PASSWORD_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: USER_RESET_PASSWORD_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+}
+
+export const sentEmail = (email) => async (dispatch) => {
+  try {
+    dispatch({ type: USER_EMAIL_SENT_REQUEST });
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const { data } = await axios.post(
+      '/api/users/reset',
+      { email },
+      config
+    );
+
+    localStorage.setItem('EcommerceUser', JSON.stringify(data.name));
+    dispatch({ type: USER_EMAIL_SENT_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: USER_EMAIL_SENT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+}

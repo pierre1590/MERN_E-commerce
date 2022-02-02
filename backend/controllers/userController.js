@@ -4,6 +4,7 @@ import generateGravatar from '../utils/generateGravatar.js';
 import User from '../models/userModel.js';
 import sendEmail from '../utils/sendEmail.js';
 import Token from '../utils/Token.js'
+import jwt from 'jsonwebtoken';
 
 // @desc Auth user & get token
 // @route POST /api/users/login
@@ -20,6 +21,7 @@ const authUser = asyncHandler(async (req, res) => {
      email: user.email,
      avatar: user.avatar,
      isAdmin: user.isAdmin,
+     isConfirmed: user.isConfirmed,
      token: generateToken(user._id)
     });
   }else if (!user){
@@ -45,7 +47,8 @@ const getUserProfile = asyncHandler(async (req, res) => {
      name: user.name,
      email: user.email,
      avatar: user.avatar,
-     isAdmin: user.isAdmin
+     isAdmin: user.isAdmin,
+     isConfirmed: user.isConfirmed,
     });
   } else {
     res.status(401)
@@ -88,7 +91,7 @@ const registerUser = asyncHandler(async (req, res) => {
      email: user.email,
      avatar,
      isAdmin: user.isAdmin,
-      token: generateToken(user._id),
+     token: generateToken(user._id),
     });
   } else {
     res.status(400)
@@ -131,33 +134,30 @@ const sendEmailConfirmation = asyncHandler(async (req, res) => {
 // @desc Confirm the email address of the registered user
 // @route GET /api/users/confirm
 // @access PUBLIC
+
+// Function confirmUser with try/catch
 const confirmUser = asyncHandler(async (req, res) => {
-	try {
-		// set the user to a confirmed status, once the corresponding JWT is verified correctly
-		const emailToken = req.params.token;
-		const decodedToken = jwt.verify(
-			emailToken,
-			process.env.JWT_EMAIL_TOKEN_SECRET
-		);
-		const user = await User.findById(decodedToken.id).select('-password');
-		user.isConfirmed = true;
-		const updatedUser = await user.save();
-		const foundToken = await Token.findOne({email:updatedUser.email})
-		res.json({
-			id: updatedUser._id,
-			email: updatedUser.email,
-			name: updatedUser.name,
-			isAdmin: updatedUser.isAdmin,
-			avatar: updatedUser.avatar,
-			isConfirmed: updatedUser.isConfirmed,
-			accessToken: generateToken(user._id, 'access'),
-      refreshToken: foundToken,
-		});
-	} catch (error) {
-		console.log(error);
-		res.status(401);
-		throw new Error('Not authorized. Token failed');
-	}
+  try {
+    // set the user to a confirmed status, once the corresponding JWT is verified correctly
+    const emailToken = req.params.token;
+    const decodedToken = jwt.verify(emailToken, process.env.JWT_SECRET);
+    const user = await User.findById(decodedToken.id).select("-password");
+    user.isConfirmed = true;
+    const updatedUser = await user.save();
+    res.json({
+      id: updatedUser._id,
+      email: updatedUser.email,
+      name: updatedUser.name,
+      isAdmin: updatedUser.isAdmin,
+      avatar: updatedUser.avatar,
+      isConfirmed: updatedUser.isConfirmed,
+      accessToken: generateToken(user._id, "access"),
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(401);
+    throw new Error("Not authorised. Token failed");
+  }
 });
 
 // @desc Send a mail with the link to reset password
@@ -252,6 +252,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       name: updatedUser.name,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
+      isConfirmed: updatedUser.isConfirmed,
       token: generateToken(updatedUser._id),
     })
   } else {
@@ -338,6 +339,7 @@ const updateUser = asyncHandler(async (req, res) => {
       name: updatedUser.name,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
+      isConfirmed: updatedUser.isConfirmed,
     })
   } else {
     res.status(404)
@@ -360,4 +362,6 @@ export {
     updateUser,
     sendEmailConfirmation,
     confirmUser,
+    mailForPasswordReset,
+    resetUserPassword,
 }

@@ -60,11 +60,9 @@ const Header = () => {
                   )}
                 </Nav.Link>
               </LinkContainer>
-                   
-                  
-                    
-               {userInfo  ? ( 
-                   <><img src={userInfo.avatar} alt={userInfo.name} style={{width:'35px',height:'45px',borderRadius:'50%'}} /><NavDropdown title={userInfo.name} id="username">
+              {userInfo  ? ( 
+                <><img src={userInfo.avatar} alt='profile' style={{width:'35px',height:'45px',borderRadius:'50%'}} />
+                    <NavDropdown title={userInfo.name} id="username">
                   <LinkContainer to="/profile">
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
@@ -80,6 +78,8 @@ const Header = () => {
                   </Nav.Link>
                 </LinkContainer>
               )}
+                        
+
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title="Admin" id="adminmenu">
                   <LinkContainer to="/admin/userlist">
@@ -102,3 +102,6 @@ const Header = () => {
 };
 
 export default Header;
+
+
+ 

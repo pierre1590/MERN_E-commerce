@@ -8,6 +8,7 @@ import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
 
 
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -72,8 +73,10 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        
-        
+        <Link to={redirect ? `/reset?redirect=${redirect}` : "/reset"}>
+          Forgot Password?
+        </Link>
+      
         <Button variant="primary" type="submit" style={{margin:'4% 40%'}}>
           Sign In
         </Button>

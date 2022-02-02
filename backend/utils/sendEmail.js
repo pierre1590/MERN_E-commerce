@@ -15,8 +15,9 @@ const sendEmail = async (id, email, option) => {
 
 		// set the correct mail option
 		const mailOptions = {
-			from: process.env.EMAIL, // sender address
+			from:{name:'E-SHOP', address:process.env.EMAIL}, // sender address
 			to: email,
+			title: 'Activation Account',
 			subject: 'Confirm your email for E-SHOP', // Subject line
 			html: `<div>
 					<h2>Account Created!</h2>
@@ -28,7 +29,7 @@ const sendEmail = async (id, email, option) => {
 				
 			`,
 		};
-
+		console.log(mailOptions);
 		const mailSent = await transporter.sendMail(
 			mailOptions,
 			(err, info) => {
@@ -49,7 +50,7 @@ const sendEmail = async (id, email, option) => {
 		const forgetPasswordToken = generateToken(id, 'forgot password');
 		const url = `${frontendURL}/user/password/reset/${forgetPasswordToken}`;
 		const mailOptions = {
-			from: process.env.EMAIL, // sender address
+			from:{name:'E-SHOP', address:process.env.EMAIL}, // sender address
 			to: email,
 			subject: 'Reset Password for E-SHOP', // Subject line
 			html: `<div>
@@ -62,7 +63,7 @@ const sendEmail = async (id, email, option) => {
 				</div>
 				
 			`,
-		};
+		} 
 
 		const mailSent = await transporter.sendMail(
 			mailOptions,
@@ -76,7 +77,8 @@ const sendEmail = async (id, email, option) => {
 		);
 
 		if (mailSent) return Promise.resolve(1);
-	}
+	} 
+
 };
 
 export default sendEmail;

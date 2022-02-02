@@ -19,7 +19,9 @@ import ProductList from './pages/ProductList.js'
 import CreateProduct from './pages/CreateProduct.js'
 import ProductEdit from './pages/ProductEdit.js'
 import OrderList from './pages/OrderList.js'
-
+import ConfirmPage from './pages/ConfirmPage.js'
+import PasswordReset from './pages/PasswordReset.js'
+import EmailPasswordReset from './pages/EmailPasswordReset.js';
 
 const App = () => {
   return (
@@ -33,6 +35,8 @@ const App = () => {
             <Route path="/cart/:id" element={<Cart />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<SignUp />} />
+            <Route path='/reset' element={<EmailPasswordReset />} />
+            <Route path="/user/confirm/:token" element={<ConfirmPage />} exact />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/shipping" element={<ShippingScreen />} />
             <Route path="/payment" element={<Payment />} />
@@ -45,6 +49,7 @@ const App = () => {
             <Route path="/admin/product/:id/edit" element={<ProductEdit />} />
             <Route path="/admin/orderlist" element={<OrderList />} />
             <Route path="/search/:keyword" element={<HomePage />} exact />
+            <Route path='/user/password/reset/:token' element={<PasswordReset />} exact />
             <Route path="/" element={<HomePage />} exact />
           </Routes>
           <CookieAgree />

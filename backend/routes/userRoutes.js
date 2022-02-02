@@ -11,6 +11,9 @@ import {
  updateUser,
  sendEmailConfirmation,
  confirmUser,
+mailForPasswordReset,
+resetUserPassword,
+
 } from '../controllers/userController.js';
 import {protect,admin} from '../middleware/authMiddleware.js';
 
@@ -18,11 +21,14 @@ import {protect,admin} from '../middleware/authMiddleware.js';
 const router = express.Router();
 
 router.route('/').post(registerUser).get(protect,admin,getUsers);
+
 router.post('/login',authUser);
+
+router.route('/confirm').post(sendEmailConfirmation)
 
 router.route('/confirm/:token').get(confirmUser)
 
-router.route('/confirm').post(sendEmailConfirmation)
+router.route('/reset').post(mailForPasswordReset).put(resetUserPassword)
 
 router
   .route("/profile")

@@ -1,16 +1,17 @@
  import React, {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
-import{Form,Button,Row,Col, Modal, Table,Image} from 'react-bootstrap'
+import{Form,Button,Row,Col, Modal, Table,Image, Card} from 'react-bootstrap'
 import { LinkContainer } from "react-router-bootstrap";
 import {useDispatch,useSelector} from 'react-redux'
 import Message from '../components/Message'
 import Loader from "../components/Loader/Loader"
-import { getUserDetails,deleteUser, updateUserProfile } from '../actions/userActions'
+import { getUserDetails,deleteUser, updateUserProfile, sendVerificationEmail,} from '../actions/userActions'
 import {listMyOrders} from '../actions/orderActions'
 import {FaTimes, FaUser} from 'react-icons/fa'
 import {DateTime} from 'luxon'
 import {USER_UPDATE_PROFILE_RESET} from '../constants/userConstants'
 import axios from 'axios'
+import Meta from '../components/Meta'
 
 
 const UserProfile = () => {
@@ -42,6 +43,9 @@ const UserProfile = () => {
     const orderListMy = useSelector((state) => state.orderListMy);
     const {loading : loadingOrders, error: errorOrders, orders} = orderListMy;
   
+
+    const userSendEmailVerification = useSelector((state) => state.userSendEmailVerification);
+    const {emailSent,hasError} = userSendEmailVerification;
  
       useEffect(() => {
         if (!userInfo ) {
@@ -110,6 +114,51 @@ const UserProfile = () => {
 
     return (
       <Row>
+        <Meta title="My Profile" description="User Profile" />
+        {userInfo && !userInfo.isConfirmed ? (
+				<>
+					{emailSent && (
+						<Message variant='success' dismissible>
+							A verification link has been sent your mail!
+						</Message>
+					)}
+					{hasError && (
+						<Message dismissible variant='danger'>
+							{hasError}
+						</Message>
+					)}
+					<Card style={{ margin: '0' }} className='mb-3'>
+						<Card.Body className='ps-0 '>
+							<Card.Title style={{ fontWeight: 'bold' }}>
+								Account Not Verified
+							</Card.Title>
+							<Card.Text>
+								{`${userInfo.name}, `} your account is not yet
+								verfied. Please{' '}
+								<Button
+									variant='link'
+									className='p-0'
+									style={{
+										fontSize: '0.9em',
+										margin: '0 0 0.1em 0',
+										focus: 'none',
+									}}
+									onClick={() =>
+										dispatch(
+											sendVerificationEmail(userInfo.email)
+										)
+									}>
+									click here
+								</Button>{' '}
+								to send a verfication email.
+							</Card.Text>
+						</Card.Body>
+					</Card>
+				</>
+			) : null}
+      
+        
+        
         <Col md={3}>
           <h1 style={{textTransform: 'uppercase'}}>User Profile</h1>
           {success && (

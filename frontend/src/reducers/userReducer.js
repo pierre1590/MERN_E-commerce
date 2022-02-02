@@ -27,7 +27,19 @@ import {
         USER_UPDATE_REQUEST,
         USER_UPDATE_SUCCESS,
         USER_UPDATE_FAIL,
-        USER_UPDATE_RESET
+        USER_UPDATE_RESET,
+        USER_EMAIL_VERIFICATION_REQUEST,
+	USER_EMAIL_VERIFICATION_SUCCESS,
+	USER_EMAIL_VERIFICATION_FAIL,
+	USER_CONFIRM_REQUEST,
+	USER_CONFIRM_SUCCESS,
+	USER_CONFIRM_FAIL,
+        USER_RESET_PASSWORD_REQUEST,
+        USER_RESET_PASSWORD_SUCCESS,
+        USER_RESET_PASSWORD_FAIL,
+        USER_EMAIL_SENT_REQUEST,
+        USER_EMAIL_SENT_SUCCESS,
+        USER_EMAIL_SENT_FAIL,
 } from '../constants/userConstants';
 
 
@@ -60,6 +72,34 @@ export const userLoginReducer = (state = {}, action) => {
                  return state
         }
      }
+
+     
+export const userSendEmailVerificationReducer = (state = {}, action) => {
+	switch (action.type) {
+		case USER_EMAIL_VERIFICATION_REQUEST:
+			return { isLoading: true };
+		case USER_EMAIL_VERIFICATION_SUCCESS:
+			return { isLoading: true, emailSent: action.payload };
+		case USER_EMAIL_VERIFICATION_FAIL:
+			return { isLoading: true, hasError: action.payload };
+		default:
+			return { ...state };
+	}
+};
+
+
+export const userConfirmReducer = (state = { isConfirmed: false }, action) => {
+	switch (action.type) {
+		case USER_CONFIRM_REQUEST:
+			return { ...state, loading: true };
+		case USER_CONFIRM_SUCCESS:
+			return { loading: false, isConfirmed: action.payload };
+		case USER_CONFIRM_FAIL:
+			return { loading: false, error: action.payload };
+		default:
+			return { ...state };
+	}
+};
 
      export const userDetailsReducer = (state = {user:{}}, action) => {
         switch(action.type) {
@@ -151,3 +191,32 @@ export const userLoginReducer = (state = {}, action) => {
                return state
       }
    }
+
+
+   export const userResetPasswordReducer = (state = {}, action) => {
+	switch (action.type) {
+		case USER_RESET_PASSWORD_REQUEST:
+			return { ...state, loading: true };
+		case USER_RESET_PASSWORD_SUCCESS:
+			return { loading: false, resetPassword: action.payload };
+		case USER_RESET_PASSWORD_FAIL:
+			return { loading: false, error: action.payload };
+		default: {
+			return { ...state };
+		}
+	}
+};
+
+export const userEmailSentReducer = (state = {}, action) => {
+        switch (action.type) {
+                case USER_EMAIL_SENT_REQUEST:
+                        return { ...state, loading: true };
+                case USER_EMAIL_SENT_SUCCESS:
+                        return { loading: false, emailSent: action.payload };
+                case USER_EMAIL_SENT_FAIL:
+                        return { loading: false, error: action.payload };
+                default: {
+                        return { ...state };
+                }
+        }
+}

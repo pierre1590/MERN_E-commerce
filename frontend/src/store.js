@@ -23,6 +23,10 @@ import {
   userListReducer,
   userAdminDeleteReducer,
   userUpdateReducer,
+  userSendEmailVerificationReducer,
+	userConfirmReducer,
+  userResetPasswordReducer,
+  userEmailSentReducer,
  } from './reducers/userReducer'
 import {
   orderCreateReducer, 
@@ -56,6 +60,10 @@ const reducer = combineReducers({
     userList: userListReducer,
     userAdminDelete: userAdminDeleteReducer,
     userUpdate: userUpdateReducer,
+    userSendEmailVerification: userSendEmailVerificationReducer,
+	  userConfirm: userConfirmReducer,
+    userResetPassword: userResetPasswordReducer,
+    userEmailSent: userEmailSentReducer,
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
