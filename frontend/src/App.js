@@ -36,6 +36,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<SignUp />} />
             <Route path='/reset' element={<EmailPasswordReset />} />
+            <Route path='/reset/:token' element={<PasswordReset />} exact />
             <Route path="/user/confirm/:token" element={<ConfirmPage />} exact />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/shipping" element={<ShippingScreen />} />
@@ -49,7 +50,6 @@ const App = () => {
             <Route path="/admin/product/:id/edit" element={<ProductEdit />} />
             <Route path="/admin/orderlist" element={<OrderList />} />
             <Route path="/search/:keyword" element={<HomePage />} exact />
-            <Route path='/user/password/reset/:token' element={<PasswordReset />} exact />
             <Route path="/" element={<HomePage />} exact />
           </Routes>
           <CookieAgree />

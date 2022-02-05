@@ -1,74 +1,109 @@
-import React, { useState } from "react";
-import { Card, Form, Button } from "react-bootstrap";
-import { useSearchParams, Link } from "react-router-dom";
+import React, { useState,useEffect } from "react";
+import {Card,  Form, Button } from "react-bootstrap";
+import {  Link } from "react-router-dom";
 import FormContainer from '../components/FormContainer';
 import Message from '../components/Message'
 import Loader from '../components/Loader/Loader'
 import {useDispatch,useSelector} from 'react-redux'
 import { sentEmail } from "../actions/userActions";
-
+import Meta from '../components/Meta' 
 
 
 const EmailPasswordReset = () => {
-  const [searchParams] = useSearchParams();
-  const [email, setEmail] = useState('')
-
-  const redirect = searchParams.search
-    ? searchParams.search.split("=")[1]
-    : "/";
+ 
+ 
+  //Create a page for send an email to reset password of the Customer
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [isSent, setIsSent] = useState(false);
 
   const dispatch = useDispatch();
 
+  const emailSend = useSelector((state) => state.emailSend);
+  const {loading:loadingEmail,error} = emailSend || {};
 
-  const emailSent = useSelector((state) => state.emailSent);
-  const {loading:loadingEmail, error:errorEmail, success:successEmail   } = emailSent;
+  const userList = useSelector(state => state.userList)
+  const {users} = userList
 
-
-  const handleSubmit = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
+    setLoading(true);
+    setIsSent(true)
+    setMessage(`An email has been sent to the address ${email}. Please follow the instructions in the email to reset your password.`);
     dispatch(sentEmail(email));
-  };
+  }
+
+  useEffect(() => {
+    if(message){
+      setLoading(false);
+      setSuccess(true);
+      setMessage(message);
+      
+    }
+  }, [message,users]);
+
+ 
+ 
+
+  
 
 
 
 
-  return (
-    <>
-    <FormContainer>
+
+  return ( <>
+  <Meta title="Reset Password" description="Reset Password"/>
+   {isSent ? (
+     <Message variant='success' dismissible duration={8}>
+       {message}
+     </Message> 
+   ): null
+    }
+    {error ? (
+      <Message variant='danger' dismissible duration={8}>
+        {error}
+      </Message>
+    ): null
+    }
+     <FormContainer>
+      <h1>Email Password Reset</h1>
       <Card>
-        <Card.Header>
-          <h1>Email for password reset</h1>
-        </Card.Header>
         <Card.Body>
-          <Card.Title>
-            <h3>Email Password Reset</h3>
-          </Card.Title>
-          <Form>
-            <Form.Group controlId="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control 
-                  type="email" 
-                  placeholder="Enter email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                   />
+          <Form onSubmit={submitHandler}>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                required
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} />
+
             </Form.Group>
-            <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
-                <p>I remember the password</p>
+            <Link
+              to='/login'
+              className="btn btn-link">
+              Back to login
             </Link>
             <Button
               variant="primary"
               type="submit"
-              style={{ margin: "0 72%" }}
-            >
-              Submit
+              style={{ margin: '10px 30%' }}>
+              Send
             </Button>
           </Form>
         </Card.Body>
-      </Card>
+      </Card> 
     </FormContainer>
-    </>
+   
+    
+   
+    
+</>
   );
 };
 
-export default EmailPasswordReset;
+
+export default EmailPasswordReset

@@ -50,7 +50,9 @@ const Login = () => {
     <FormContainer>
       <h1>Sign In</h1>
       {error && <Message variant="danger">{error}</Message>}
-      {success && <Message variant="success">Account deleted successfully</Message>}
+      {success && (
+        <Message variant="success">Account deleted successfully</Message>
+      )}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="email">
@@ -62,7 +64,6 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Group>
-        
 
         <Form.Group controlId="password">
           <Form.Label>Password</Form.Label>
@@ -73,24 +74,23 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Link to={redirect ? `/reset?redirect=${redirect}` : "/reset"}>
-          Forgot Password?
-        </Link>
-      
-        <Button variant="primary" type="submit" style={{margin:'4% 40%'}}>
+        <Link to='/reset'>
+            Forgot Password?
+          </Link>
+
+        <Button variant="primary" type="submit" style={{ margin: "0 40%" }}>
           Sign In
         </Button>
       </Form>
 
       <Row className="py-3">
-        <Col style={{margin:'2% 30%'}}>
+        <Col style={{ margin: "2% 30%" }}>
           New Customer?{" "}
-          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"} >
+          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
             Register
           </Link>
         </Col>
       </Row>
-      
     </FormContainer>
   );
 }

@@ -64,7 +64,7 @@ const reducer = combineReducers({
 	  userConfirm: userConfirmReducer,
     userResetPassword: userResetPasswordReducer,
     userEmailSent: userEmailSentReducer,
-})
+});
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))

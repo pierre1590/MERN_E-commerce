@@ -134,7 +134,7 @@ const UserProfile = () => {
 							</Card.Title>
 							<Card.Text>
 								{`${userInfo.name}, `} your account is not yet
-								verfied. Please{' '}
+								verified. Please{' '}
 								<Button
 									variant='link'
 									className='p-0'

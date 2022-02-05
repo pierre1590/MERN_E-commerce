@@ -48,7 +48,7 @@ const sendEmail = async (id, email, option) => {
 	else if (option === 'forgot password') {
 		// create a new JWT to verify user via email
 		const forgetPasswordToken = generateToken(id, 'forgot password');
-		const url = `${frontendURL}/user/password/reset/${forgetPasswordToken}`;
+		const url = `${frontendURL}/reset/${forgetPasswordToken}`;
 		const mailOptions = {
 			from:{name:'E-SHOP', address:process.env.EMAIL}, // sender address
 			to: email,

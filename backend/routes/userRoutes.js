@@ -12,7 +12,7 @@ import {
  sendEmailConfirmation,
  confirmUser,
 mailForPasswordReset,
-resetUserPassword,
+userPasswordReset
 
 } from '../controllers/userController.js';
 import {protect,admin} from '../middleware/authMiddleware.js';
@@ -27,8 +27,8 @@ router.post('/login',authUser);
 router.route('/confirm').post(sendEmailConfirmation)
 
 router.route('/confirm/:token').get(confirmUser)
+router.route('/reset').post(mailForPasswordReset) .put(userPasswordReset)
 
-router.route('/reset').post(mailForPasswordReset).put(resetUserPassword)
 
 router
   .route("/profile")

@@ -3,7 +3,6 @@ import generateToken from "../utils/generateToken.js";
 import generateGravatar from '../utils/generateGravatar.js';
 import User from '../models/userModel.js';
 import sendEmail from '../utils/sendEmail.js';
-import Token from '../utils/Token.js'
 import jwt from 'jsonwebtoken';
 
 // @desc Auth user & get token
@@ -22,7 +21,7 @@ const authUser = asyncHandler(async (req, res) => {
      avatar: user.avatar,
      isAdmin: user.isAdmin,
      isConfirmed: user.isConfirmed,
-     token: generateToken(user._id)
+     token: generateToken(user._id,'access'),
     });
   }else if (!user){
     res.status(404).json({
@@ -91,7 +90,7 @@ const registerUser = asyncHandler(async (req, res) => {
      email: user.email,
      avatar,
      isAdmin: user.isAdmin,
-     token: generateToken(user._id),
+     token: generateToken(user._id,'email'),
     });
   } else {
     res.status(400)
@@ -140,7 +139,7 @@ const confirmUser = asyncHandler(async (req, res) => {
   try {
     // set the user to a confirmed status, once the corresponding JWT is verified correctly
     const emailToken = req.params.token;
-    const decodedToken = jwt.verify(emailToken, process.env.JWT_SECRET);
+    const decodedToken = jwt.verify(emailToken, process.env.JWT_EMAIL_TOKEN_SECRET);
     const user = await User.findById(decodedToken.id).select("-password");
     user.isConfirmed = true;
     const updatedUser = await user.save();
@@ -151,7 +150,7 @@ const confirmUser = asyncHandler(async (req, res) => {
       isAdmin: updatedUser.isAdmin,
       avatar: updatedUser.avatar,
       isConfirmed: updatedUser.isConfirmed,
-      accessToken: generateToken(user._id, "access"),
+      accessToken: generateToken(user._id, 'access'),
     });
   } catch (error) {
     console.log(error);
@@ -172,7 +171,7 @@ const mailForPasswordReset = asyncHandler(async (req, res) => {
 		// send a link to reset password only if it's a confirmed account
 		if (user && user.isConfirmed) {
 			// send the mail and return the user details
-
+      
 			// the sendMail util function takes a 3rd argument to indicate what type of mail to send
 			await sendEmail(user._id, email, 'forgot password');
 
@@ -195,16 +194,15 @@ const mailForPasswordReset = asyncHandler(async (req, res) => {
 // @desc Reset password of any verified user
 // @route PUT /api/users/reset
 // @access PUBLIC
-const resetUserPassword = asyncHandler(async (req, res) => {
+const userPasswordReset = asyncHandler(async (req, res) => {
 	try {
 		// update the user password if the jwt is verified successfully
-		const { passwordToken, password } = req.body;
-		const decodedToken = jwt.verify(
-			passwordToken,
-			process.env.JWT_FORGOT_PASSWORD_TOKEN_SECRET
-		);
-		const user = await User.findById(decodedToken.id);
+		const { password } = req.body;
+    const {passwordToken} = req.body;
+		const decodedToken = jwt.verify(passwordToken, process.env.JWT_FORGOT_PASSWORD_TOKEN_SECRET);
 
+		const user = await User.findById(decodedToken.id);
+      
 		if (user && password) {
 			user.password = password;
 			const updatedUser = await user.save();
@@ -223,8 +221,8 @@ const resetUserPassword = asyncHandler(async (req, res) => {
 			}
 		}
 	} catch (error) {
-		res.status(400);
-		throw new Error('User not found.');
+		res.status(400).json({error});
+		
 	}
 });
 
@@ -253,7 +251,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
       isConfirmed: updatedUser.isConfirmed,
-      token: generateToken(updatedUser._id),
+      token: generateToken(updatedUser._id,'access'),
     })
   } else {
     res.status(404)
@@ -363,5 +361,5 @@ export {
     sendEmailConfirmation,
     confirmUser,
     mailForPasswordReset,
-    resetUserPassword,
-}
+   userPasswordReset,
+};

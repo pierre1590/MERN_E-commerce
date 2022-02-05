@@ -417,40 +417,52 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
   }
 
   
-export const resetUserPassword =
-(passwordToken, password) => async (dispatch) => {
-  try {
-    dispatch({ type: USER_RESET_PASSWORD_REQUEST });
+ // Reset the password after the click on the link sent to the user email
+  export const resetUserPassword = (passwordToken,password) => async (dispatch) => {
+    try {
+      dispatch({
+        type: USER_RESET_PASSWORD_REQUEST,
+      })
 
-    
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
+      
 
-    const { data } = await axios.put(
-      '/api/users/reset',
-      { passwordToken, password },
-      config
-    );
+          
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+      }
+    }
 
-   
-    dispatch({ type: USER_RESET_PASSWORD_SUCCESS, payload: data });
-  } catch (error) {
-    dispatch({
-      type: USER_RESET_PASSWORD_FAIL,
-      payload:
+      const {data} =  await axios.put('/api/users/reset',{passwordToken,password},config)
+
+      dispatch({
+        type: USER_RESET_PASSWORD_SUCCESS,
+        payload: data,
+      })
+
+    } catch (error) {
+      const message =
         error.response && error.response.data.message
           ? error.response.data.message
-          : error.message,
-    });
+          : error.message
+      dispatch({
+        type: USER_RESET_PASSWORD_FAIL,
+        payload: message,
+      })
+    }
   }
-}
+
+
+
+
+
+
 
 export const sentEmail = (email) => async (dispatch) => {
   try {
-    dispatch({ type: USER_EMAIL_SENT_REQUEST });
+    dispatch({ 
+      type: USER_EMAIL_SENT_REQUEST 
+    });
 
     const config = {
       headers: {
@@ -463,9 +475,12 @@ export const sentEmail = (email) => async (dispatch) => {
       { email },
       config
     );
+    
 
-    localStorage.setItem('EcommerceUser', JSON.stringify(data.name));
-    dispatch({ type: USER_EMAIL_SENT_SUCCESS, payload: data });
+    dispatch({ 
+      type: USER_EMAIL_SENT_SUCCESS, 
+      payload: data 
+    });
   } catch (error) {
     dispatch({
       type: USER_EMAIL_SENT_FAIL,

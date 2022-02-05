@@ -18,7 +18,9 @@ const PasswordReset = () => {
 	const dispatch = useDispatch();
 
 	const userResetPassword = useSelector((state) => state.userResetPassword);
-	const { loading, resetPassword, error } = userResetPassword;
+	const { loading, resetPassword, error, } = userResetPassword;
+
+
 
 	useEffect(() => {
 		const nameFromLocalStorage = localStorage.getItem('EcommerceUserName');
@@ -48,14 +50,16 @@ const PasswordReset = () => {
 	return (
 		<FormContainer>
 			<h1>{name ? `${name}, reset password` : 'Reset Password'}</h1>
+			
 			{message && (
 				<Message dismissible duration={8} variant='warning'>
 					{message}
 				</Message>
 			)}
+			
 			{resetPassword && (
-				<Message dismissible variant='success' duration={8}>
-					Password Changed Successfully.
+				<Message  variant='success' dismissible duration={10}>
+					Password reset successfully. You will be redirected to login page in 10 seconds.
 				</Message>
 			)}
 			{error && (
@@ -74,6 +78,7 @@ const PasswordReset = () => {
 								label='Password'
 								className='mb-3'>
 								<Form.Control
+									type='password'
 									size='lg'
 									placeholder='Enter your password'
 									value={password}
@@ -91,10 +96,12 @@ const PasswordReset = () => {
 					<Form.Group className='my-2'>
 						<InputGroup style={{ width: '100%' }}>
 							<FloatingLabel
+								
 								controlId='confirmpasswordinput'
 								label='Confirm password'
 								className='mb-3'>
 								<Form.Control
+									type='password'
 									size='lg'
 									placeholder='Confirm your password'
 									value={confirmPassword}
