@@ -214,7 +214,7 @@ export const userEmailSentReducer = (state = {}, action) => {
                 case USER_EMAIL_SENT_FAIL:
                         return { loading: false, error: action.payload };
                 default: {
-                        return { ...state };
+                        return state ;
                 }
         }
 }

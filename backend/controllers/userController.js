@@ -167,7 +167,16 @@ const mailForPasswordReset = asyncHandler(async (req, res) => {
 		const { email } = req.body;
 
 		const user = await User.findOne({ email });
-
+    if (!user) {
+      res.status(400).json({
+        message: "Email not found ",
+      });
+    } else if (!user.isConfirmed) {
+      res.status(401).json({
+        message: "Email not yet confirmed",
+      });
+    }
+   
 		// send a link to reset password only if it's a confirmed account
 		if (user && user.isConfirmed) {
 			// send the mail and return the user details
@@ -183,12 +192,14 @@ const mailForPasswordReset = asyncHandler(async (req, res) => {
 				avatar: user.avatar,
 				isConfirmed: user.isConfirmed,
 			});
-		}
+		} 
+   
 	} catch (error) {
-		console.log(error);
 		res.status(401);
 		throw new Error('Could not send the mail. Please retry.');
 	}
+
+ 
 });
 
 // @desc Reset password of any verified user
@@ -202,7 +213,9 @@ const userPasswordReset = asyncHandler(async (req, res) => {
 		const decodedToken = jwt.verify(passwordToken, process.env.JWT_FORGOT_PASSWORD_TOKEN_SECRET);
 
 		const user = await User.findById(decodedToken.id);
-      
+    
+    
+    
 		if (user && password) {
 			user.password = password;
 			const updatedUser = await user.save();
@@ -221,7 +234,7 @@ const userPasswordReset = asyncHandler(async (req, res) => {
 			}
 		}
 	} catch (error) {
-		res.status(400).json({error});
+		res.status(400).json({message:'User not found'});
 		
 	}
 });

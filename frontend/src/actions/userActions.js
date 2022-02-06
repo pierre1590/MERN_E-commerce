@@ -454,10 +454,6 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 
 
 
-
-
-
-
 export const sentEmail = (email) => async (dispatch) => {
   try {
     dispatch({ 
@@ -475,12 +471,12 @@ export const sentEmail = (email) => async (dispatch) => {
       { email },
       config
     );
-    
-
+    console.log(data)
     dispatch({ 
       type: USER_EMAIL_SENT_SUCCESS, 
-      payload: data 
+      payload: data ,
     });
+   
   } catch (error) {
     dispatch({
       type: USER_EMAIL_SENT_FAIL,
