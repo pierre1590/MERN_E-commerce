@@ -28,6 +28,9 @@
  - Admin Page : Products
  <img src="https://i.ibb.co/y6SNGjz/Products-List.jpg" alt="Products-List" width='800px' height='500px'>
 
+ - Admin Page : Create Product
+ <img src="https://i.ibb.co/dMkQYj8/Create-Product.jpg" alt="Create-Product" width='800px' height='500px'>
+
 - Admin Page : Orders
 <img src="https://i.ibb.co/7SXYBRK/Orders-List.jpg" alt="Orders-List" width='800px' height='500px'>
 
