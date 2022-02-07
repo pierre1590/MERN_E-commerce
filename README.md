@@ -1,6 +1,6 @@
 <h1 align="center">
 E-SHOP
-</h1>
+
 <p align="center">
 
 ![npm](https://img.shields.io/npm/v/npm?style=plastic)
@@ -8,7 +8,7 @@ E-SHOP
 ![node-current](https://img.shields.io/node/v/npm?color=green&label=Node.js&logo=Node.js&logoColor=green&style=plastic)
 ![GitHub repo size](https://img.shields.io/github/repo-size/pierre1590/MERN_E-commerce?color=blu&label=E-Commerce&logo=E-Commerce&logoColor=blu&style=plastic)
 </p>
-
+</h1>
 - HomePage
  <img src="https://i.ibb.co/P1P2nLc/HomePage.jpg" alt="HomePage" width='800px' height='500px'>
 
