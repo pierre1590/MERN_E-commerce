@@ -2,15 +2,5 @@
 
 # E-SHOP
 
-[img](https://i.ibb.co/P1P2nLc/HomePage.jpg) 
-[img]: 
-[img]: 
-[img]:
-[img]: 
-[img]:
-[img]: 
-[img]:
-[img]: 
-[img]:
-[img]: 
-[img]:    
+ <img src="https://i.ibb.co/P1P2nLc/HomePage.jpg" alt="HomePage" width='800px' height='700px'>
+    
