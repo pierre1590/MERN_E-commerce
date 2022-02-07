@@ -21,7 +21,12 @@ The payment method implemented is PayPal which allows you to pay for orders, the
 - Type `cd <project-name>` to enter the project directory.
 - Run `npm install` to install all dependencies.
 - Create an `.env` in the root directory andd the variables as in 
-[this file]() 
+[this file](https://github.com/pierre1590/MERN_E-commerce/blob/main/env.md) 
+- Run the command `npm run dev` to start the server and the client concurrently.
+
+You can obtain the MONGO_URI from the [MongoDB Atlas](https://cloud.mongodb.com/) after you create an account.
+
+For setting up Nodemailer for gmail accounts, refer to the [Nodemailer](https://nodemailer.com/) documentation.
 
 - HomePage
  <img src="https://i.ibb.co/P1P2nLc/HomePage.jpg" alt="HomePage" width='800px' height='500px'>
