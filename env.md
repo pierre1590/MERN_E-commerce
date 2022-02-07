@@ -4,7 +4,7 @@ PORT = `Any port`
 
 MONGO_URI = `MongoDB Atlas connection URI`
 
-JWT_SECRET = ``Random string of alphanumeric characters`
+JWT_SECRET = `Random string of alphanumeric characters`
 
 PAYPAL_CLIENT_ID = `Paypal client id to accept paypal payments` 
 
