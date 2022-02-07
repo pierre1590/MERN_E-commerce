@@ -11,6 +11,11 @@ E-SHOP
 
 </p>
 </h1>
+An installable e-commerce app built using the MERN stack, Redux.js, Bootstrap 5. User authentication is done using e-mail and password.
+The app also implements an email verification system for users who register using an email and password.
+<br/>
+The payment method implemented is PayPal which allows you to pay for orders, the app also includes an administration panel to keep track of all products, orders and users.
+
 
 - HomePage
  <img src="https://i.ibb.co/P1P2nLc/HomePage.jpg" alt="HomePage" width='800px' height='500px'>
