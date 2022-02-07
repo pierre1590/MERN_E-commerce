@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import {Card,  Form, Button } from "react-bootstrap";
 import {  Link } from "react-router-dom";
 import FormContainer from '../components/FormContainer';
@@ -17,7 +17,7 @@ const EmailPasswordReset = () => {
   const dispatch = useDispatch();
 
   const emailSend = useSelector((state) => state.userEmailSent)
-  console.log(emailSend)
+ 
  const {loading, emailSent, error} = emailSend || {}
 
 
@@ -48,8 +48,7 @@ const EmailPasswordReset = () => {
        
       
         
-       
-       
+  
         <h1>Email Password Reset</h1>
         <Card>
           <Card.Body>

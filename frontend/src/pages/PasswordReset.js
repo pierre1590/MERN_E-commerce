@@ -18,9 +18,9 @@ const PasswordReset = () => {
 	const dispatch = useDispatch();
 
 	const userResetPassword = useSelector((state) => state.userResetPassword);
-	const { loading, resetPassword, error, } = userResetPassword;
+	const { loading, success, error } = userResetPassword;
 
-
+	
 
 	useEffect(() => {
 		const nameFromLocalStorage = localStorage.getItem('EcommerceUserName');
@@ -30,12 +30,12 @@ const PasswordReset = () => {
 	}, []);
 
 	useEffect(() => {
-		if (resetPassword) {
+		if (success) {
 			setTimeout(() => {
 				navigate('/login');
 			}, 10000);
 		}
-	}, [navigate, resetPassword]);
+	}, [ navigate, success]);
 
 	
 	const handleSubmit = (e) => {
@@ -50,23 +50,23 @@ const PasswordReset = () => {
 	return (
 		<FormContainer>
 			<h1>{name ? `${name}, reset password` : 'Reset Password'}</h1>
-			
-			{message && (
+			{success ? (
+				<Message  variant='success' dismissible duration={8}>
+				Password updated successfully. You will be redirected to login page in 10 seconds.
+				</Message>
+			) : null}
+			{message ? (
 				<Message dismissible duration={8} variant='warning'>
 					{message}
 				</Message>
-			)}
-			
-			{resetPassword && (
-				<Message  variant='success' dismissible duration={10}>
-					Password reset successfully. You will be redirected to login page in 10 seconds.
-				</Message>
-			)}
-			{error && (
-				<Message dismissible variant='danger'>
+			) : null}
+			{error ? (
+				<Message dismissible variant='danger' duration={8}>
 					{error}
 				</Message>
-			)}
+			): null}
+			
+			
 			{loading ? (
 				<Loader />
 			) : (

@@ -169,11 +169,11 @@ const mailForPasswordReset = asyncHandler(async (req, res) => {
 		const user = await User.findOne({ email });
     if (!user) {
       res.status(400).json({
-        message: "Email not found ",
+        message: "Email not found. ",
       });
     } else if (!user.isConfirmed) {
       res.status(401).json({
-        message: "Email not yet confirmed",
+        message: "Email not yet confirmed.",
       });
     }
    
@@ -230,11 +230,11 @@ const userPasswordReset = asyncHandler(async (req, res) => {
 				});
 			} else {
 				res.status(401);
-				throw new Error('Unable to update password');
+				throw new Error('Unable to update password. Please retry.');
 			}
 		}
 	} catch (error) {
-		res.status(400).json({message:'User not found'});
+		res.status(400).json({message:'Reset link has expired. Please try again with a new password reset link.'});
 		
 	}
 });

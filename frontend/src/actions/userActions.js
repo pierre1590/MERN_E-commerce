@@ -434,12 +434,12 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     }
 
       const {data} =  await axios.put('/api/users/reset',{passwordToken,password},config)
-
+     
       dispatch({
         type: USER_RESET_PASSWORD_SUCCESS,
         payload: data,
       })
-
+      
     } catch (error) {
       const message =
         error.response && error.response.data.message
@@ -449,6 +449,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         type: USER_RESET_PASSWORD_FAIL,
         payload: message,
       })
+      
     }
   }
 
@@ -471,7 +472,7 @@ export const sentEmail = (email) => async (dispatch) => {
       { email },
       config
     );
-    console.log(data)
+   
     dispatch({ 
       type: USER_EMAIL_SENT_SUCCESS, 
       payload: data ,
