@@ -30,6 +30,9 @@ For setting up Nodemailer for gmail accounts, refer to the [Nodemailer](https://
 
 Obtain the paypal client ID from the [Paypal developer](https://developer.paypal.com/) dashboard after you create an account.
 
+## Demo
+The app has been hosted on heroku [here]().
+
 - HomePage
  <img src="https://i.ibb.co/P1P2nLc/HomePage.jpg" alt="HomePage" width='800px' height='500px'>
 
@@ -65,3 +68,19 @@ Obtain the paypal client ID from the [Paypal developer](https://developer.paypal
 
 - Reset password
 <img src="https://i.ibb.co/2FvzZdj/Reset-Password.jpg" alt="Reset-Password" width='800px' height='500px'>
+
+## Technologies Used
+
+Some of the technologies used in the development of this web application are as follow:
+
+-   [MongoDB Atlas](https://www.mongodb.com/cloud/atlas): It provides a free cloud service to store MongoDB collections.
+-   [React.js](https://reactjs.org/): A JavaScript library for building user interfaces.
+-   [Node.js](https://nodejs.org/en/): A runtime environment to help build fast server applications using JS.
+-   [Express.js](https://expressjs.com/): A popular Node.js framework to build scalable server-side for web applications.
+-   [Redux.js](https://redux.js.org/): A predictable & global state container for React apps.
+-   [Mongoose](https://mongoosejs.com/): An ODM(Object Data Modelling)library for MongoDB and Node.js
+-   [Heroku](http://heroku.com/): A platform(PaaS) to deploy full stack web applications for free.
+-   [JSON Web Tokens or JWTs](https://jwt.io/): A standard to securely authenticate HTTP requests
+-   [Bootstrap 5](https://getbootstrap.com/docs/4.0/getting-started/introduction/): A popular framework for building responsive, mobile-first sites.
+-   [React Bootstrap](https://react-bootstrap.github.io/): The most popular front-end framework, rebuilt for React.
+-   [nodemailer](https://nodemailer.com/about/): Send mails using a node based server
