@@ -50,7 +50,7 @@ For setting up Nodemailer for gmail accounts, refer to the [Nodemailer](https://
 Obtain the paypal client ID from the [Paypal developer](https://developer.paypal.com/) dashboard after you create an account.
 
 ## Demo
-The app has been hosted on heroku [here]().
+The app has been hosted on Heroku [here]().
 
 - HomePage
  <img src="https://i.ibb.co/P1P2nLc/HomePage.jpg" alt="HomePage" width='800px' height='500px'>
