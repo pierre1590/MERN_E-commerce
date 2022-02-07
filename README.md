@@ -16,6 +16,20 @@ The app also implements an email verification system for users who register usin
 <br/>
 The payment method implemented is PayPal which allows you to pay for orders, the app also includes an administration panel to keep track of all products, orders and users.
 
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+    </li>
+    <li><a href=#demo>Demo</a></li>
+    <li><a href="#technologies-used">Technologies used</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
+
+
 ## Getting Started
 - Clone this repo and run the `git clone <repo>` command from your terminal.
 - Type `cd <project-name>` to enter the project directory.
