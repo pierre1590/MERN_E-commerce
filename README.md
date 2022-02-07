@@ -20,7 +20,7 @@ The payment method implemented is PayPal which allows you to pay for orders, the
 - Clone this repo and run the `git clone <repo>` command from your terminal.
 - Type `cd <project-name>` to enter the project directory.
 - Run `npm install` to install all dependencies.
-- Create an `.env` in the root directory andd the variables as in 
+- Create an `.env` in the root directory and add the variables as in 
 [this file](https://github.com/pierre1590/MERN_E-commerce/blob/main/env.md) 
 - Run the command `npm run dev` to start the server and the client concurrently.
 
