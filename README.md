@@ -102,6 +102,7 @@ Some of the technologies used in the development of this web application are as 
 -   [JSON Web Tokens or JWTs](https://jwt.io/): A standard to securely authenticate HTTP requests
 -   [Bootstrap 5](https://getbootstrap.com/docs/4.0/getting-started/introduction/): A popular framework for building responsive, mobile-first sites.
 -   [React Bootstrap](https://react-bootstrap.github.io/): The most popular front-end framework, rebuilt for React.
+- [Multer](https://www.npmjs.com/package/multer):Node.js package that help in dealing with file uploads.
 -   [nodemailer](https://nodemailer.com/about/): Send mails using a node based server
 
 ## Contact
