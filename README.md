@@ -1,4 +1,6 @@
 <h1 align="center">
+E-SHOP
+</h1>
 <p align="center">
 
 ![npm](https://img.shields.io/npm/v/npm?style=plastic)
