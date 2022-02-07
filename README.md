@@ -1,8 +1,11 @@
+<h1 align="center">
+<p align="center">
+
 ![npm](https://img.shields.io/npm/v/npm?style=plastic)
 ![tag react](https://img.shields.io/static/v1?label=REACT.JS&message=react.js&logo=react&logoColor=blue&style=plastic&logoWidth=20)
 ![node-current](https://img.shields.io/node/v/npm?color=green&label=Node.js&logo=Node.js&logoColor=green&style=plastic)
 ![GitHub repo size](https://img.shields.io/github/repo-size/pierre1590/MERN_E-commerce?color=blu&label=E-Commerce&logo=E-Commerce&logoColor=blu&style=plastic)
-# E-SHOP
+</p>
 
 - HomePage
  <img src="https://i.ibb.co/P1P2nLc/HomePage.jpg" alt="HomePage" width='800px' height='500px'>
