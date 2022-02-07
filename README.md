@@ -16,6 +16,12 @@ The app also implements an email verification system for users who register usin
 <br/>
 The payment method implemented is PayPal which allows you to pay for orders, the app also includes an administration panel to keep track of all products, orders and users.
 
+## Getting Started
+- Clone this repo and run the `git clone <repo>` command from your terminal.
+- Type `cd <project-name>` to enter the project directory.
+- Run `npm install` to install all dependencies.
+- Create an `.env` in the root directory andd the variables as in 
+[this file]() 
 
 - HomePage
  <img src="https://i.ibb.co/P1P2nLc/HomePage.jpg" alt="HomePage" width='800px' height='500px'>
