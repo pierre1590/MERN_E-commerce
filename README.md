@@ -1,6 +1,6 @@
 ![npm](https://img.shields.io/npm/v/npm?style=plastic)
 ![tag react](https://img.shields.io/static/v1?label=REACT.JS&message=react.js&logo=react&logoColor=blue&style=plastic&logoWidth=20)
-![node-current](https://img.shields.io/node/v/npm?style=plastic)
+![node-current](https://img.shields.io/node/v/npm?color=green&label=Node.js&logo=Node.js&logoColor=green)
 
 # E-SHOP
 
