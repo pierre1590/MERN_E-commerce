@@ -84,3 +84,6 @@ Some of the technologies used in the development of this web application are as 
 -   [Bootstrap 5](https://getbootstrap.com/docs/4.0/getting-started/introduction/): A popular framework for building responsive, mobile-first sites.
 -   [React Bootstrap](https://react-bootstrap.github.io/): The most popular front-end framework, rebuilt for React.
 -   [nodemailer](https://nodemailer.com/about/): Send mails using a node based server
+
+## Contact
+Piero Sabino - [@SabinoPiero](https://twitter.com/SabinoPiero) - [P137ru590](https://www.instagram.com/p137ru590/?hl=it) - [Piero Sabino](https://www.linkedin.com/in/pierosabino/) - piero.sa@icloud.com
