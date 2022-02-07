@@ -35,7 +35,7 @@ const EmailPasswordReset = () => {
       {loading ? <Loader /> : null}
    {emailSent ? (
      <Message variant='success' dismissible duration={8}>
-       {`An email has been sent to the  ${email}. Please follow the instructions in the email to reset your password.`}
+       {`An email has been sent to   ${email}. Please follow the instructions in the email to reset your password.`}
      </Message> 
    ): null
     }

@@ -27,12 +27,15 @@ const ConfirmPage = () => {
 		} else {
 			setIsLoggedIn(false);
 		}
-	}, [userInfo]);
+	}, [navigate, userInfo]);
 
 	useEffect(() => {
 		// confirm user once the email token is available
 		dispatch(confirmUser(token, isLoggedIn));
-	}, [dispatch, token, isLoggedIn]);
+		setTimeout(() => {
+			navigate('/login');
+		}, 10000);
+	}, [dispatch, token, isLoggedIn, navigate]);
 
 	if (loading || (!isConfirmed && !error)) {
 		return <Loader />;
