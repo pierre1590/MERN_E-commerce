@@ -28,6 +28,8 @@ You can obtain the MONGO_URI from the [MongoDB Atlas](https://cloud.mongodb.com/
 
 For setting up Nodemailer for gmail accounts, refer to the [Nodemailer](https://nodemailer.com/) documentation.
 
+Obtain the paypal client ID from the [Paypal developer](https://developer.paypal.com/) after you create an account.
+
 - HomePage
  <img src="https://i.ibb.co/P1P2nLc/HomePage.jpg" alt="HomePage" width='800px' height='500px'>
 
