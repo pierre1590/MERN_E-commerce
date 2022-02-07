@@ -12,3 +12,27 @@
     
 - User Page
 <img src="https://i.ibb.co/wWw67J8/Orders.jpg" alt='User' width='800px' height='500px'> 
+
+- Cart Page
+<img src="https://i.ibb.co/ZdqGMKg/Shopping-Cart.jpg" alt="Shopping-Cart" width='800px' height='500px'>
+
+- Order Page
+<img src="https://i.ibb.co/Q8hr9Lx/Order.jpg" alt="Order" width='800px' height='500px'>
+
+- Checkout Page
+<img src="https://i.ibb.co/gVyCLLy/Order-Paid-Delivered.jpg" alt="Order-Paid-Delivered" width='800px' height='500px'>
+
+ - Admin Page : Users 
+ <img src="https://i.ibb.co/ZM1G3k8/UserList.jpg" alt="UserList" width='800px' height='500px'>
+
+ - Admin Page : Products
+ <img src="https://i.ibb.co/y6SNGjz/Products-List.jpg" alt="Products-List" width='800px' height='500px'>
+
+- Admin Page : Orders
+<img src="https://i.ibb.co/7SXYBRK/Orders-List.jpg" alt="Orders-List" width='800px' height='500px'>
+
+- Send Link to reset password
+<img src="https://i.ibb.co/KhN4pyh/Email-Reset-Password.jpg" alt="Email-Reset-Password" width='800px' height='500px'>
+
+- Reset password
+<img src="https://i.ibb.co/2FvzZdj/Reset-Password.jpg" alt="Reset-Password" width='800px' height='500px'>
