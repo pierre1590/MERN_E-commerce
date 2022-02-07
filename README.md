@@ -15,7 +15,7 @@ E-SHOP
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="Introduction">Introduction</a></li>
+    <li><a href="#introduction">Introduction</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
     </li>
