@@ -1,4 +1,5 @@
-
+![npm](https://img.shields.io/npm/v/npm?style=plastic)
+![tag react](https://img.shields.io/static/v1?label=REACT.JS&message=react.js&logo=react&logoColor=blue&style=plastic&logoWidth=20)
 
 # E-SHOP
 
