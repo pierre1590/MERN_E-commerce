@@ -16,6 +16,7 @@ The app also implements an email verification system for users who register usin
 <br/>
 The payment method implemented is PayPal which allows you to pay for orders, the app also includes an administration panel to keep track of all products, orders and users.
 
+
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
@@ -101,3 +102,5 @@ Some of the technologies used in the development of this web application are as 
 
 ## Contact
 Piero Sabino - [@SabinoPiero](https://twitter.com/SabinoPiero) - [P137ru590](https://www.instagram.com/p137ru590/?hl=it) - [Piero Sabino](https://www.linkedin.com/in/pierosabino/) - piero.sa@icloud.com
+
+Project Link : [https://github.com/pierre1590/MERN_E-commerce](https://github.com/pierre1590/MERN_E-commerce)
