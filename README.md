@@ -29,7 +29,7 @@ E-SHOP
 
 ## Introduction
 An installable e-commerce app built using the MERN stack, Redux.js e Bootstrap 5. User authentication is done using e-mail and password.
-The app also implements an email verification system for users who register using an email and password, inc case you have forgotten your password you can create a new one using the forgot password feature.
+The app also implements an email verification system for users who register using an email and password, in case you have forgotten your password you can create a new one using the forgot password feature.
 <br/>
 The payment method implemented is PayPal which allows you to pay for orders, the app also includes an administration panel to keep track of all products, orders and users.
 
