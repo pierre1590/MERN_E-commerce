@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect,useCallback} from 'react';
 import {FormControl, InputGroup,   Button} from 'react-bootstrap'
 import {useNavigate} from 'react-router-dom'
 import { FaSearch } from 'react-icons/fa';
@@ -17,7 +17,15 @@ const SearchBox = () => {
            alert('Please, enter the product to search for')
          }
     }
-    
+
+
+    //handleChange 
+    const handleChange = (e) => {
+        setKeyword(e.target.value)
+    } 
+
+
+   
   
 
       return (
@@ -30,7 +38,7 @@ const SearchBox = () => {
            aria-label="searchProducts"
            aria-describedby="basic-addon2"
            value={keyword}
-           onChange={(e) => setKeyword(e.target.value)}
+           onChange={handleChange}
          />
          <Button variant="secondary" id="button-addon2" onClick={submitHandler} >
            <FaSearch />
