@@ -266,9 +266,7 @@ import { FaUser, FaInfo} from 'react-icons/fa'
                       </Button>
                     </ListGroup.Item>
                   )}
-                  <FaInfo className="tooltip">
-                    <span className="tooltiptext">Prova tooltip for</span>
-                  </FaInfo>
+                 
               </ListGroup>
             </Card>
           </Col>
