@@ -334,6 +334,9 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message
+          if (message === 'Not authorized, token failed') {
+            dispatch(logout())
+          }
       dispatch({
         type: USER_LIST_FAIL,
         payload: message,
@@ -370,6 +373,9 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message
+          if (message === 'Not authorized, token failed') {
+            dispatch(logout())
+          }
       dispatch({
         type: USER_DELETE_ADMIN_FAIL,
         payload: message,

@@ -108,7 +108,7 @@ import { FaUser} from 'react-icons/fa'
               <ListGroup.Item>
                 <h2 style={{ textTransform: "uppercase" }}>Shipping</h2>
                 <strong>Name: </strong>
-                {order.user.name}
+                {order?.user.name}
                 <p>
                   <strong>E-mail:</strong>{" "}
                   <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
