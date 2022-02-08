@@ -54,14 +54,13 @@ button[type="submit"]{
   margin: 0 auto;
 }
 
-
-.info-tooltip{
+.tooltip {
   position: relative;
   display: inline-block;
-  border-bottom: 0.5px dotted black;
+  border-bottom: 1px dotted black;
 }
 
-.info-tooltip .tooltip-text{
+.tooltip .tooltiptext {
   visibility: hidden;
   width: 120px;
   background-color: #555;
@@ -78,7 +77,7 @@ button[type="submit"]{
   transition: opacity 0.3s;
 }
 
-.info-tooltip .tooltip-text::after{
+.tooltip .tooltiptext::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -89,7 +88,7 @@ button[type="submit"]{
   border-color: #555 transparent transparent transparent;
 }
 
-.info-tooltip:hover .tooltip-text{
+.tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }

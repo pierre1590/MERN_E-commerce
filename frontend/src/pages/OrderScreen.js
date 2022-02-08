@@ -11,7 +11,7 @@ import axios from 'axios'
 import {PayPalButton} from 'react-paypal-button-v2'
 import {ORDER_PAY_RESET,ORDER_DELIVER_RESET} from '../constants/orderConstants'
 import {DateTime} from 'luxon'
-import { FaUser,FaInfoCircle} from 'react-icons/fa'
+import { FaUser, FaInfo} from 'react-icons/fa'
 
 
  const OrderScreen = () => {
@@ -97,11 +97,18 @@ import { FaUser,FaInfoCircle} from 'react-icons/fa'
     ) : (
       <>
         <Link to="/profile" className="btn btn-light">
-            <FaUser />
-            Profile
+          <FaUser />
+          Profile
         </Link>
         <h1 style={{ textTransform: "uppercase" }}>Order n. {orderId}</h1>
-        <p style={{ textTransform: "uppercase",fontSize: "20px"}}><span> {DateTime.fromISO(order.createdAt).toFormat("ccc yyyy/MM/dd HH:mm:ss ZZZZ z ")}</span></p>
+        <p style={{ textTransform: "uppercase", fontSize: "20px" }}>
+          <span>
+            {" "}
+            {DateTime.fromISO(order.createdAt).toFormat(
+              "ccc yyyy/MM/dd HH:mm:ss ZZZZ z "
+            )}
+          </span>
+        </p>
         <Row>
           <Col md={8}>
             <ListGroup variant="flush">
@@ -112,7 +119,7 @@ import { FaUser,FaInfoCircle} from 'react-icons/fa'
                 <p>
                   <strong>E-mail:</strong>{" "}
                   <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
-                </p>  
+                </p>
                 <p>
                   <strong>Address:</strong> {order.shippingAddress.address},
                   {order.shippingAddress.postalCode}{" "}
@@ -122,7 +129,9 @@ import { FaUser,FaInfoCircle} from 'react-icons/fa'
                 {order.isDelivered ? (
                   <Message variant="success">
                     Delivered on{" "}
-                    {DateTime.fromISO(order.deliveredAt).toFormat("ccc yyyy/MM/dd HH:mm:ss ZZZZ z")} 
+                    {DateTime.fromISO(order.deliveredAt).toFormat(
+                      "ccc yyyy/MM/dd HH:mm:ss ZZZZ z"
+                    )}
                   </Message>
                 ) : (
                   <Message variant="danger">Not Delivered</Message>
@@ -137,7 +146,10 @@ import { FaUser,FaInfoCircle} from 'react-icons/fa'
                 </p>
                 {order.isPaid ? (
                   <Message variant="success">
-                    Paid on {DateTime.fromISO(order.paidAt).toFormat('ccc yyyy/MM/dd HH:mm:ss ZZZZ z')}
+                    Paid on{" "}
+                    {DateTime.fromISO(order.paidAt).toFormat(
+                      "ccc yyyy/MM/dd HH:mm:ss ZZZZ z"
+                    )}
                   </Message>
                 ) : (
                   <Message variant="danger">Not Paid</Message>
@@ -227,38 +239,36 @@ import { FaUser,FaInfoCircle} from 'react-icons/fa'
                   </Row>
                 </ListGroup.Item>
                 {!order.isPaid && (
-                <ListGroup.Item>
-                  {loadingPay && <Loader />}
-                  {!sdkReady ? (
-                    <Loader />
-                  ) : (
-                    <PayPalButton
-                      amount={order.totalPrice}
-                      onSuccess={successPaymentHandler}
-                    />
-                  )}
-                </ListGroup.Item>
-              )}
-              <Row>
-                <Col className='info-tooltip'>
-                    <FaInfoCircle  className='tooltip-text'/>
-                </Col>
-              </Row>
-              {loadingDeliver && <Loader />}
-              {userInfo && 
-                userInfo.isAdmin && 
-                order.isPaid && 
-                !order.isDelivered && (
-                <ListGroup.Item>
-                    <Button 
-                        type="button" 
+                  <ListGroup.Item>
+                    {loadingPay && <Loader />}
+                    {!sdkReady ? (
+                      <Loader />
+                    ) : (
+                      <PayPalButton
+                        amount={order.totalPrice}
+                        onSuccess={successPaymentHandler}
+                      />
+                    )}
+                  </ListGroup.Item>
+                )}
+                {loadingDeliver && <Loader />}
+                {userInfo &&
+                  userInfo.isAdmin &&
+                  order.isPaid &&
+                  !order.isDelivered && (
+                    <ListGroup.Item>
+                      <Button
+                        type="button"
                         className="btn btn-block"
                         onClick={deliverHandler}
                       >
-                          Mark As Delivered
-                        </Button>
-                </ListGroup.Item>
-              )}
+                        Mark As Delivered
+                      </Button>
+                    </ListGroup.Item>
+                  )}
+                  <FaInfo className="tooltip">
+                    <span className="tooltiptext">Prova tooltip for</span>
+                  </FaInfo>
               </ListGroup>
             </Card>
           </Col>
