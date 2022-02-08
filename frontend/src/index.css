@@ -62,7 +62,7 @@ button[type="submit"]{
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 120px;
+  width: 350px;
   background-color: #555;
   color: #fff;
   text-align: center;
