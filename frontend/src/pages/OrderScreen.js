@@ -11,7 +11,7 @@ import axios from 'axios'
 import {PayPalButton} from 'react-paypal-button-v2'
 import {ORDER_PAY_RESET,ORDER_DELIVER_RESET} from '../constants/orderConstants'
 import {DateTime} from 'luxon'
-import { FaUser} from 'react-icons/fa'
+import { FaUser,FaInfoCircle} from 'react-icons/fa'
 
 
  const OrderScreen = () => {
@@ -239,6 +239,11 @@ import { FaUser} from 'react-icons/fa'
                   )}
                 </ListGroup.Item>
               )}
+              <Row>
+                <Col className='info-tooltip'>
+                    <FaInfoCircle  className='tooltip-text'/>
+                </Col>
+              </Row>
               {loadingDeliver && <Loader />}
               {userInfo && 
                 userInfo.isAdmin && 
