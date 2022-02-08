@@ -25,7 +25,7 @@ const SearchBox = () => {
      
        <InputGroup className="mb-3 search-input" style={{marginLeft:'5%' }}>
          <FormControl
-           type="text"
+           type="search"
            placeholder="Search Products..."
            aria-label="searchProducts"
            aria-describedby="basic-addon2"
