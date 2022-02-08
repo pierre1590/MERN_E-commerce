@@ -11,7 +11,7 @@ import axios from 'axios'
 import {PayPalButton} from 'react-paypal-button-v2'
 import {ORDER_PAY_RESET,ORDER_DELIVER_RESET} from '../constants/orderConstants'
 import {DateTime} from 'luxon'
-import { FaUser, FaInfo} from 'react-icons/fa'
+import { FaUser} from 'react-icons/fa'
 
 
  const OrderScreen = () => {
@@ -265,8 +265,7 @@ import { FaUser, FaInfo} from 'react-icons/fa'
                         Mark As Delivered
                       </Button>
                     </ListGroup.Item>
-                  )}
-                 
+                  )}     
               </ListGroup>
             </Card>
           </Col>
