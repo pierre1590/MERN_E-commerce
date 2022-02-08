@@ -30,7 +30,8 @@ const ProductList = () => {
   const {
     loading: loadingDelete,
     error: errorDelete,
-    success: successDelete,
+    success: successCreate,
+    product: createdProduct,
   } = productDelete
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -38,20 +39,19 @@ const ProductList = () => {
 
  
   useEffect(() => {
-    dispatch({ type: PRODUCT_CREATE_RESET})
+    dispatch({type: PRODUCT_CREATE_RESET})
 
-    if (!userInfo.isAdmin) {
-     navigate('/login')
-    } 
+    if(!userInfo || !userInfo.isAdmin){
+      navigate('/login')
+    }
 
+    if(successCreate){
+      navigate(`/admin/product/${createdProduct._id}`)
+    } else {
     dispatch(listProducts());
+    }
+    }, [successCreate, createdProduct, userInfo, dispatch, navigate]);
 
-  }, [
-    dispatch, 
-    navigate, 
-    userInfo,
-    successDelete
-  ]);
 
   const deleteHandler = (id) => {
       dispatch(deleteProduct(id));
