@@ -22,6 +22,7 @@ import OrderList from './pages/OrderList.js'
 import ConfirmPage from './pages/ConfirmPage.js'
 import PasswordReset from './pages/PasswordReset.js'
 import EmailPasswordReset from './pages/EmailPasswordReset.js';
+import NotFound from './pages/NotFound.js';
 
 const App = () => {
   return (
@@ -51,6 +52,7 @@ const App = () => {
             <Route path="/admin/orderlist" element={<OrderList />} />
             <Route path="/search/:keyword" element={<HomePage />} exact />
             <Route path="/" element={<HomePage />} exact />
+            <Route path="*" element={<NotFound/>} />
           </Routes>
           <CookieAgree />
         </Container>
