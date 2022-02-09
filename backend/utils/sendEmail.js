@@ -53,15 +53,10 @@ const sendEmail = async (id, email, option) => {
 			from:{name:'E-SHOP', address:process.env.EMAIL}, // sender address
 			to: email,
 			subject: 'Reset Password for E-SHOP', // Subject line
-			html: `<div>
-					<h2>Reset Password for your E-SHOP account</h2>
-					<br/>
-					Forgot your password? No worries! Just click this link to 
-					<a href="${url}">reset your password</a>. 
-					<br/>
-					Note that this link is valid for only the next 10 minutes. 
+			html: `
+				<div>
+				<a href="http://www.google.com">Cick here!</a>
 				</div>
-				
 			`,
 		} 
 
@@ -82,3 +77,13 @@ const sendEmail = async (id, email, option) => {
 };
 
 export default sendEmail;
+
+
+{/* <div>
+					<h2>Reset Password for your E-SHOP account</h2>
+					<br/>
+					Forgot your password? No worries! Just click this link to 
+					<a href="${url}">reset your password</a>. 
+					<br/>
+					Note that this link is valid for only the next 10 minutes. 
+				</div> */}
