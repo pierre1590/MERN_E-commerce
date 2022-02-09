@@ -22,7 +22,7 @@ const sendEmail = async (id, email, option) => {
       html: `<div>
 			<h2>Account Created!</h2>
 			Click this link to 
-			<a href=${url}>verify your account</a>
+			<a href=\`${url}\`>verify your account</a>
 			<br>
 			Note that this link is valid only for the next 15 minutes.
 		</div>
