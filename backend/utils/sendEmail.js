@@ -19,14 +19,14 @@ const sendEmail = async (id, email, option) => {
       to: email,
       title: "Activation Account",
       subject: "Confirm your email for E-SHOP", // Subject line
-      html: "<div>" +
-			"<h2>Account Created!</h2>" +
-			"Click this link to" + 
-			`<a href=${url}>`+"verify your account</a>" +
-		"<br>" +
-			"Note that this link is valid only for the next 15 minutes." +
-		"</div>" 
-			,
+      html: `<div>
+			<h2>Account Created!</h2>
+			Click this link to 
+			<a href="${url}">verify your account</a>
+			<br>
+			Note that this link is valid only for the next 15 minutes.
+		</div>
+			`,
     };
 		console.log(mailOptions);
 		const mailSent = await transporter.sendMail(
@@ -50,20 +50,43 @@ const sendEmail = async (id, email, option) => {
 		const url = `${frontendURL}/reset/${forgetPasswordToken}`;
 		
 		const mailOptions = {
-      from: { name: "E-SHOP", address: process.env.EMAIL }, // sender address
-      to: email,
-      subject: "Reset Password for E-SHOP", // Subject line
-      html: 
-	  "<div>" +
-	  "<h2>Reset Password for your E-SHOP account</h2>" +
-	  "<br/>" +
-	  "Forgot your password? No worries! Just click this link to" + 
-	  `<a href=${url}>`+"reset your password</a>." + 
-	  "<br>"+
-	  "Note that this link is valid for only the next 10 minutes. " +
-  "</div>"
-			,
-    }; 
+	
+			from: { name: "E-SHOP", address: process.env.EMAIL }, // sender address
+			to: email,
+			title: "Reset Password",
+			subject: "Reset your password for E-SHOP", // Subject line
+			html: `<div>
+				<h2>Reset Password</h2>
+				Click this link to	
+				<a href="${url}">reset your password</a>
+				<br>
+				Note that this link is valid only for the next 10 minutes.
+			</div>
+				`,
+		};
+
+
+
+
+
+
+
+
+// 		const mailOptions = {
+//       from: { name: "E-SHOP", address: process.env.EMAIL }, // sender address
+//       to: email,
+//       subject: "Reset Password for E-SHOP", // Subject line
+//       html: `
+// 	  <div>
+// 	  <h2>Reset Password for your E-SHOP account</h2>
+// 	  <br/>
+// 	  Forgot your password? No worries! Just click this link to 
+// 	  <a href="${url}"> reset your password</a>. 
+// 	  <br>
+// 	  Note that this link is valid for only the next 10 minutes. 
+//   </div>
+// 			`,
+//     }; 
 
 		const mailSent = await transporter.sendMail(
 			mailOptions,
