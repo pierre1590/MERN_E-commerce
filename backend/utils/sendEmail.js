@@ -15,17 +15,19 @@ const sendEmail = async (id, email, option) => {
 
 		// set the correct mail option
 		const mailOptions = {
-			from:{name:'E-SHOP', address:process.env.EMAIL}, // sender address
-			to: email,
-			title: 'Activation Account',
-			subject: 'Confirm your email for E-SHOP', // Subject line
-			html: `<div>
-					<h2>Account Created!</h2>
-					<p>Please click the link below to verify your email address.</p>
-					<a href="${url}">${url}</a>
-				
+      from: { name: "E-SHOP", address: process.env.EMAIL }, // sender address
+      to: email,
+      title: "Activation Account",
+      subject: "Confirm your email for E-SHOP", // Subject line
+      html: `<div>
+			<h2>Account Created!</h2>
+			Click this link to 
+			<a href="${url}">verify your account</a>
+			<br>
+			Note that this link is valid only for the next 15 minutes.
+		</div>
 			`,
-		};
+    };
 		console.log(mailOptions);
 		const mailSent = await transporter.sendMail(
 			mailOptions,
@@ -52,13 +54,14 @@ const sendEmail = async (id, email, option) => {
       to: email,
       subject: "Reset Password for E-SHOP", // Subject line
       html: `
-			<div>
-			<h2>Reset Password for your E-SHOP account</h2>
-			
-			<p>Please click the link below to reset your password.</p>
-			<a href="${frontendURL}/reset/${forgetPasswordToken}">Click here!</a>
-			Note that this link is valid for only the next 10 minutes. 
-		</div> 
+	  <div>
+	  <h2>Reset Password for your E-SHOP account</h2>
+	  <br/>
+	  Forgot your password? No worries! Just click this link to 
+	  <a href="${url}">reset your password</a>. 
+	  <br>
+	  Note that this link is valid for only the next 10 minutes. 
+  </div>
 			`,
     }; 
 
