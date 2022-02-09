@@ -17,4 +17,12 @@ tls: {
 }
 });
 
+transporter.verify((err, success) => {
+	if (err) {
+		console.log(err);
+	} else {
+		console.log('Server is ready to take messages');
+	}
+});
+
 export default transporter;
