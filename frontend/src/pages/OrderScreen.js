@@ -270,7 +270,7 @@ import { FaUser} from 'react-icons/fa'
                      (Fake account Paypal:
                       <br/>
                         - Email : <br/>sb-f9nn4312152597@personal.example.com<br/>
-                        - password : 5,8$2DCw )
+                        - password :<br/>5,8$2DCw )
                   </span>
               </ListGroup>
             </Card>
