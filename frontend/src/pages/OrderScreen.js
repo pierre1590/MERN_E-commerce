@@ -266,6 +266,12 @@ import { FaUser} from 'react-icons/fa'
                       </Button>
                     </ListGroup.Item>
                   )}     
+                  <span>
+                     (Fake account Paypal:
+                      <br/>
+                        - Email : sb-f9nn4312152597@personal.example.com<br/>
+                        - password : 5,8$2DCw )
+                  </span>
               </ListGroup>
             </Card>
           </Col>
