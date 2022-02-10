@@ -28,7 +28,7 @@ const HomePage = () => {
   return (
     <>
       <Meta />
-      {!userInfo.isConfirmed ? 
+      {userInfo.isConfirmed === false ? 
       <Message variant="success">
           {`An email was sent to ${userInfo.email}. 
             Please check the email to confirm your account.`}
