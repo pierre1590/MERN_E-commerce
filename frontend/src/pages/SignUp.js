@@ -52,9 +52,11 @@ const SignUp = () => {
     return (
       <FormContainer>
         <h1>Sign Up</h1>
+        
         {message && <Message variant="danger">{message}</Message>}
         {error && <Message variant="danger">{error}</Message>}
         {loading && <Loader />}
+        {userInfo && <Message variant="success">An email was sent to {email}. Please check the email to confirm the account.</Message>}}
         <Form onSubmit={submitHandler}>
         <Form.Group controlId="name">
             <Form.Label>Full Name</Form.Label>
