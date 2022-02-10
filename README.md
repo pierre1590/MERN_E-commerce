@@ -51,6 +51,9 @@ Obtain the paypal client ID from the [Paypal developer](https://developer.paypal
 
 ## Demo
 The app has been hosted on Heroku [here](https://pieroshopapp.herokuapp.com/).
+To pay with PayPal use the following fake account:
+- Email: sb-f9nn4312152597@personal.example.com
+- Password: 5,8$2DCw
 
 - HomePage
  <img src="https://i.ibb.co/P1P2nLc/HomePage.jpg" alt="HomePage" width='800px' height='500px'>
