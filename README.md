@@ -1,6 +1,5 @@
 <h1 align="center">
-
-# E-SHOP
+ E-SHOP
 
 <p align="center">
 
@@ -21,6 +20,7 @@
       <a href="#getting-started">Getting Started</a>
     </li>
     <li><a href=#demo>Demo</a></li>
+    <li><a href=#gallery-of-the-app>Gallery of the app</a></li>
     <li><a href="#technologies-used">Technologies used</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
@@ -57,7 +57,7 @@ To pay with PayPal use the following fake account:
 - Password: 5,8$2DCw
 
 
-
+## Gallery of the app
 - HomePage
  <img src="https://i.ibb.co/P1P2nLc/HomePage.jpg" alt="HomePage" width='800px' height='500px'>
 
