@@ -23,7 +23,7 @@ const SignUp = () => {
     const dispatch = useDispatch();
   
     const userRegister = useSelector((state) => state.userRegister);
-    const {loading,error,userInfo} = userRegister; 
+    const {loading,error,userInfo,success} = userRegister; 
   
   
     const redirect = searchParams.search
@@ -33,8 +33,10 @@ const SignUp = () => {
   
       useEffect(() => {
           if(userInfo){
+            setTimeout(() => {
               navigate(redirect);
-          }
+          }, 10000);
+        }
       }, [userInfo,redirect,navigate]);
   
     const submitHandler = (e) => {
@@ -52,7 +54,7 @@ const SignUp = () => {
     return (
       <FormContainer>
         <h1>Sign Up</h1>
-        
+        {success && <Message variant="success">{`An email was sent to ${email}. Please check the email to confirm your account`}</Message>}
         {message && <Message variant="danger">{message}</Message>}
         {error && <Message variant="danger">{error}</Message>}
         {loading && <Loader />}

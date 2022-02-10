@@ -13,8 +13,7 @@ const HomePage = () => {
   const  keyword  = useParams();
   const dispatch = useDispatch();
 
-  const userLogin = useSelector((state) => state.userLogin)
-    const { userInfo } = userLogin
+ 
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
@@ -28,11 +27,7 @@ const HomePage = () => {
   return (
     <>
       <Meta />
-      {userInfo.isConfirmed === false ? 
-      <Message variant="success">
-          {`An email was sent to ${userInfo.email}. 
-            Please check the email to confirm your account.`}
-      </Message>: null}
+     
       {keyword ? (
         <ProductCarousel />
       ) : (
