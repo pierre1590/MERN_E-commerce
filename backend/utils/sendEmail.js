@@ -21,6 +21,7 @@ const sendEmail = async (id, email, option) => {
       subject: "Confirm your email for E-SHOP", // Subject line
 	  headers: {
 		'X-Laziness-level': 1000,
+		'X-Spam': false,
 	  },
       html: `<div>
 			<h2>Account Created!</h2>
