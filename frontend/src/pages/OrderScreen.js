@@ -266,10 +266,10 @@ import { FaUser} from 'react-icons/fa'
                       </Button>
                     </ListGroup.Item>
                   )}     
-                  <span>
+                  <span style={{textAlign: 'center'}}>
                      (Fake account Paypal:
                       <br/>
-                        - Email : sb-f9nn4312152597@personal.example.com<br/>
+                        - Email : <br/>sb-f9nn4312152597@personal.example.com<br/>
                         - password : 5,8$2DCw )
                   </span>
               </ListGroup>
