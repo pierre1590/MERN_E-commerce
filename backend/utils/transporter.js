@@ -4,10 +4,7 @@ dotenv.config();
 
 // configure the transporter for nodemailer to use gmail account to send mails
 const transporter = nodemailer.createTransport({
-	host:'smtp.gmail.com',
-	port: 465,
-	secure: true,
-	service: 'gmail',
+	service: 'sendgrid',
 	auth: {
 		user: process.env.MAIL_USERNAME,
 		pass: process.env.MAIL_PASSWORD,
