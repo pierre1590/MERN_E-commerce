@@ -28,11 +28,11 @@ const HomePage = () => {
   return (
     <>
       <Meta />
-      {userInfo && 
+      {!userInfo.isConfirmed ? 
       <Message variant="success">
           {`An email was sent to ${userInfo.email}. 
             Please check the email to confirm your account.`}
-      </Message>}
+      </Message>: null}
       {keyword ? (
         <ProductCarousel />
       ) : (
