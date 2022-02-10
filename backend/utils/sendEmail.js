@@ -22,7 +22,13 @@ const sendEmail = async (id, email, option) => {
 	  headers: {
 		'X-Laziness-level': 1000,
 		'X-Spam-Score':0,
-		'X-Spam-Status':'No, score=-10.0, status=GOOD'
+		'X-Spam-Status':'No, score=-10.0, status=GOOD',
+		'X-Spam-Flag':'No',
+		'X-Spam-Checker-Version':'SpamAssassin 3.3.1 (2014-03-17) onrs-ord-vm3',
+		'X-Spam-Report':'{ ... }',
+		'X-Spam-Report-Version':'3.3.1',
+		'X-Spam-Tests':'{ ... }',
+		
 	  },
       html: `<div>
 			<h2>Account Created!</h2>
