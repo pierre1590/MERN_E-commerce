@@ -59,12 +59,12 @@ export const login = (email, password) => async(dispatch) => {
             {email,password},
             config
         )
-
+         
         dispatch({
             type: USER_LOGIN_SUCCESS,
             payload: data
         })
-
+        console.log(data)
         localStorage.setItem('userInfo', JSON.stringify(data))
         localStorage.removeItem('promptEmailVerfication')
     } catch (error) {
